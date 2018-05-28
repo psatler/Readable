@@ -2,8 +2,24 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 
+import * as API from '../utils/api'
+
 class App extends Component {
+
+  state = {
+    data: []
+  }
+
+  componentDidMount(){
+    API.getAllCategories().then( (d) => {
+        this.setState( { data: d} );
+      });
+  }
+
+
   render() {
+    console.log('data', this.state.data);
+
     return (
       <div className="App">
         <header className="App-header">
