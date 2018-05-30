@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 import '../App.css';
 
 import * as API from '../utils/api'
@@ -18,7 +17,7 @@ class App extends Component {
       });
 
     API.getPostsByCategory('redux').then( (d) => console.log('Test', d))
-    API.getAllPosts().then( (d) => console.log(d))
+    API.getAllPosts().then( (d) => console.log('posts', d))
     
   }
 
