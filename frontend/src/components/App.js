@@ -18,6 +18,8 @@ class App extends Component {
       });
 
     API.getPostsByCategory('redux').then( (d) => console.log('Test', d))
+    API.getAllPosts().then( (d) => console.log(d))
+    
   }
 
 
