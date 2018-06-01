@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Segment, Item, Image, Button, Icon, Label }from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+import { Item, Button, Icon, Label }from 'semantic-ui-react'
 /**
  * Redux
  */
@@ -28,7 +29,6 @@ const ItemPost = ({props}) => {
                     
                 </Item.Extra>
                 
-
             </Item.Content>
         </Item>
 
@@ -55,7 +55,9 @@ class Posts extends Component {
         console.log('posts', this.props.posts)
         return (
             <div>
-                <Button floated='right'>Create New Post</Button>
+                <Link to="/new" > 
+                    <Button color='black' floated='right'> Create New Post</Button>
+                </Link>
                 <Item.Group divided >
                     {this.displayPosts()}
                 </Item.Group>

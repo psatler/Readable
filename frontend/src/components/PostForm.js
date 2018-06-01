@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
 import uuidv4 from 'uuid/v4'
 
@@ -41,9 +42,9 @@ class PostForm extends Component {
             author: author, 
             category: category,
         }
-
         this.props.addNewPost(newPost);
-
+        
+        //clearing the form
         this.setState({
             title: '',
             body: '',
@@ -62,11 +63,11 @@ class PostForm extends Component {
         //the code below is intended to organize the data as the Dropdown component of Semantic-UI requires
         const options = []
         categories.map( option => {
-            const aux2 = {}
-            aux2.key =  option.name;
-            aux2.value = option.name;
-            aux2.text = option.name;
-            return options.push(aux2);
+            const aux = {}
+            aux.key =  option.name;
+            aux.value = option.name;
+            aux.text = option.name;
+            return options.push(aux);
         })
         
         // console.log('options', options)
@@ -101,6 +102,12 @@ const mapStateToProps = (state) => {
     return {
         categories: state.categoryReducer.categories
     }
+}
+
+PostForm.propTypes = {
+    fetchCategories: PropTypes.func.isRequired,
+    addNewPost: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToPros)(PostForm);
