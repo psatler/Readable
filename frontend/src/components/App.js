@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import '../App.css';
-
+import { Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import PostForm from './PostForm';
 import Posts from './Posts'
@@ -13,10 +13,19 @@ class App extends Component {
   render() {
 
     return (
-      // <div className="App">
+
       <Container >
-        <Posts />
-        <PostForm />  
+
+        <Route exact path="/" render={ () => (
+          <Posts />
+        )}
+        />
+
+        <Route path="/new" render={() => (
+          <PostForm />
+        )}
+        />
+
       </Container>
       
     );
