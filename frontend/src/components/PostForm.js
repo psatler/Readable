@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form } from 'semantic-ui-react'
+import uuidv4 from 'uuid/v4'
 
 //redux
 import { connect } from 'react-redux'
@@ -33,7 +34,7 @@ class PostForm extends Component {
     handleSubmit = () => {
         const {title, body, author, category} = this.state;
         const newPost = {
-            id: 21321322,
+            id: uuidv4(), //random id
             timestamp: Date.now(),
             title: title,
             body: body,
@@ -42,6 +43,13 @@ class PostForm extends Component {
         }
 
         this.props.addNewPost(newPost);
+
+        this.setState({
+            title: '',
+            body: '',
+            author: '',
+            category: '',
+        })
 
         //add here a pop up or something saying the post was added! and then clear the form
 
