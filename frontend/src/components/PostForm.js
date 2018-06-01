@@ -1,81 +1,98 @@
 import React, { Component } from 'react'
+import { Form } from 'semantic-ui-react'
 
+//redux
+import { connect } from 'react-redux'
+import { fetchCategories, addNewPost } from '../actions'
 
 class PostForm extends Component {
+    /**
+     * PARAMS:
+        id - UUID should be fine, but any unique id will work
+        timestamp - timestamp in whatever format you like, you can use Date.now() if you like
+        title - String
+        body - String
+        author - String
+        category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
+     */
+
     //local state
     state = {
         title: '',
         body: '',
         author: '',
-        option: '',
-
+        category: '',
     }
 
-    onSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state.option);
-        console.log('name',this.state.name);
-
+    componentDidMount() {
+        this.props.fetchCategories()
     }
 
-    onChange = (e) => {
-        e.preventDefault();
-        //instead of creating one event handler for each type, grabbing the name and assigning its value
-        this.setState({[e.target.name]: e.target.value});
-    }
+    handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
-    onChangeSelect = (e) => {
-        this.setState({ option: e});
-    }
+    handleSubmit = () => {
+        const {title, body, author, category} = this.state;
+        const newPost = {
+            id: 21321322,
+            timestamp: Date.now(),
+            title: title,
+            body: body,
+            author: author, 
+            category: category,
+        }
 
+        this.props.addNewPost(newPost);
 
+        //add here a pop up or something saying the post was added! and then clear the form
+
+    }   
 
     render() {
+        const {title, body, author, category} = this.state;
+        const {categories} = this.props; //categories fetched from the server
+        
+        //the code below is intended to organize the data as the Dropdown component of Semantic-UI requires
+        const options = []
+        categories.map( option => {
+            const aux2 = {}
+            aux2.key =  option.name;
+            aux2.value = option.name;
+            aux2.text = option.name;
+            return options.push(aux2);
+        })
+        
+        // console.log('options', options)
+
         return (
-        <div>
-            <form  onSubmit={this.onSubmit}>
-                <input 
-                    required 
-                    type='text' 
-                    name='title' 
-                    onChange={ (e) => this.onChange } 
-                    placeholder="Insert your Post Title" 
-                />
-                <br />
-                <textarea 
-                    rows={5} 
-                    name='body'
-                    onChange={ (e) => this.onChange } 
-                    placeholder="Enter your post message here"
-                >
-                </textarea>
-                <br />
-                <input 
-                    required 
-                    type='text'
-                    name='author' 
-                    onChange={ (e) => this.onChange}
-                    placeholder="Author name" 
-                />
-                <br />
-                <select 
-                    onChange={ (e) => this.onChangeSelect(e.target.value)} 
-                    value={this.state.option}
-                    name='option' 
-                >
-                    <option value="" disabled> Placeholder </option>
-                    <option value="react" >React</option>
-                    <option value="redux" >Redux</option>
-                    <option value="udacity" >Udacity</option>
-                </select>
-                <br />
-                <button type="submit">Submit</button>
-                {/* <button>Cancel</button> */}
-            </form>
-            
-        </div>
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Input required placeholder='Insert the post title' name='title' value={title} 
+                    onChange={this.handleChange} />
+                <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
+                   onChange={this.handleChange} />
+                <Form.Dropdown fluid selection placeholder='Select Category' options={options} 
+                    name='category' value={category} onChange={this.handleChange}
+                    />
+                <Form.Input required placeholder='Author name' name='author' value={author} 
+                    onChange={this.handleChange} />
+                <Form.Button content='Submit' />
+            </Form>
         )
+    }
+
+}
+
+
+const mapDispatchToPros = (dispatch) => {
+    return {
+        fetchCategories: () => dispatch(fetchCategories()),
+        addNewPost: (newPost) => dispatch(addNewPost(newPost))
     }
 }
 
-export default PostForm;
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categoryReducer.categories
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToPros)(PostForm);
