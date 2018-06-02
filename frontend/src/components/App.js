@@ -16,15 +16,9 @@ class App extends Component {
 
       <Container >
 
-        <Route exact path="/" render={ () => (
-          <Posts />
-        )}
-        />
+        <Route exact path="/" render={ () => (<Posts />)} />
 
-        <Route path="/new" render={() => (
-          <PostForm />
-        )}
-        />
+        <Route path="/new" render={() => (<PostForm />)} />
 
       </Container>
       

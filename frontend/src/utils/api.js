@@ -8,7 +8,7 @@ const headers = {
   }
 
 /**
- * POSTS
+ * CATEGORIES
  */
 
 //GET /categories - Get all of the categories available for the app.
@@ -22,6 +22,10 @@ export const getPostsByCategory = (category) =>
     fetch(`${api}/${category}/posts`, { headers })
         .then(res => res.json())
         .then(data => data)
+
+/**
+ * POSTS
+ */
 
 //GET /posts - Get all of the posts. Useful for the main page when no category is selected.
 export const getAllPosts = () => 

@@ -27,7 +27,7 @@ class PostForm extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchCategories()
+        this.props.fetchCategories();
     }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })

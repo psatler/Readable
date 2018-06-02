@@ -1,7 +1,7 @@
-import { FETCH_ALL_POSTS } from './types'
+// import { FETCH_ALL_POSTS } from './types'
 import * as API from '../utils/api'
 
-// export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
 
