@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import { Item, Button, Icon, Label }from 'semantic-ui-react'
+import { showTime } from '../utils/helpers'
 /**
  * Redux
  */
@@ -14,7 +15,11 @@ const ItemPost = ({props}) => {
         <Item>
             <Item.Content>
                 <Item.Header >{props.title}</Item.Header>
-                <Item.Meta><Icon name="time" /> Submitted by {props.author} at {props.timestamp} to {props.category}</Item.Meta>
+                <Item.Meta><Icon name="time" /> Submitted by <strong>{props.author}</strong>  
+                    {`${showTime(props.timestamp)} `} 
+                    to 
+                    <strong>{` ${props.category} `}</strong> 
+                </Item.Meta>
                 {/* <Item.Description>
                     {props.body}
                 </Item.Description> */}

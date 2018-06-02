@@ -1,3 +1,6 @@
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+
 export function capitalize (str = '') {
     return typeof str !== 'string'
       ? ''
@@ -5,9 +8,8 @@ export function capitalize (str = '') {
   }
 
 
-// export const convertUnixTimeToDate = (unixTime) => {
-//         const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-//         const date = new Date(unixTime * 1000); //converting to milliseconds
-//         const day = date.get    
-//     return
-// }
+export const showTime = (unixTime) => {
+        TimeAgo.locale(en);
+        const timeAgo = new TimeAgo('en-US');
+        return timeAgo.format(unixTime);
+}

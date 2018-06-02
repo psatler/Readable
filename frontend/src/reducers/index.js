@@ -15,12 +15,12 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 posts: action.payload
             };
-            
+
         case ADD_NEW_POST:
             const newPost = action.payload;
             return {
                 // ...state,
-                posts: state.posts.push(newPost), //just pushing the newly created post into old array of posts
+                posts: state.posts.concat(newPost), //just pushing the newly created post into old array of posts
             };
 
         default:
