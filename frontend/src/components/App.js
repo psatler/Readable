@@ -6,7 +6,7 @@ import PostForm from './PostForm';
 import Posts from './Posts'
 import PostDetail from './PostDetail'
 
-//Using URL parameters with React Router: https://www.youtube.com/watch?v=CdBzemiFCfM
+//Using URL parameters with React Router, by Tyler McGinnis: https://www.youtube.com/watch?v=CdBzemiFCfM
 
 
 class App extends Component {

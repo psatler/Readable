@@ -37,6 +37,7 @@ class PostDetail extends Component {
                     voteScore={post.voteScore}
                     commentCount={post.commentCount}
                     body={post.body}
+                    isDetail={true}
             />
         )
     }
@@ -59,6 +60,7 @@ class PostDetail extends Component {
 
 PostDetail.propTypes = {
     post: PropTypes.object.isRequired,
+    fetchPostDetail: PropTypes.func.isRequired,
 }
 
 const mapStateToPros = (state) => ({

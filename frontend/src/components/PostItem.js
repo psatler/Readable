@@ -7,17 +7,23 @@ import { showTime } from '../utils/helpers'
 
 // export const PostItem = ({props}, isDetail) => {
 export const PostItem = (props) => {
+    const titleWithLink = props.isDetail ? (<div>{props.title}</div>) : //if it is in the post details page, do not exhibit title as a link
+        (<Link to={`/${props.category}/${props.id}`}>
+            {props.title}
+        </Link>);
+
     return (
         <Item>
             <Item.Content>
-                <Item.Header onClick={() => console.log(props.id) } >
-                    <Link to={`/${props.category}/${props.id}`}>
+                <Item.Header >
+                    {titleWithLink}
+                    {/* <Link to={`/${props.category}/${props.id}`}>
                         {props.title}
-                    </Link>        
+                    </Link>         */}
                 </Item.Header>
                 
                 <Item.Meta><Icon name="time" /> Submitted by <strong>{props.author}</strong>  
-                    {`${showTime(props.timestamp)} `} 
+                    {` ${showTime(props.timestamp)} `} 
                     to 
                     <strong>{` ${props.category} `}</strong> 
                 </Item.Meta>
@@ -31,7 +37,9 @@ export const PostItem = (props) => {
                         <Label circular>{props.voteScore}</Label>
                     <Icon name='arrow down' />
 
-                    <Label size='mini' basic color='black' >{props.commentCount} comments</Label>
+                    {/*exhibiting or not based upon page location: main page or post detail */}
+                   {!props.isDetail && <Label size='mini' basic color='black' >{props.commentCount} comments</Label> } 
+
                     <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Edit')}}> Edit </Label>
                     <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Delete')}}> Delete </Label>
                     
