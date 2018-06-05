@@ -4,7 +4,9 @@ import { Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 import PostForm from './PostForm';
 import Posts from './Posts'
+import PostDetail from './PostDetail'
 
+//Using URL parameters with React Router: https://www.youtube.com/watch?v=CdBzemiFCfM
 
 
 class App extends Component {
@@ -16,9 +18,12 @@ class App extends Component {
 
       <Container >
 
-        <Route exact path="/" render={ () => (<Posts />)} />
-
-        <Route path="/new" render={() => (<PostForm />)} />
+        {/* <Route exact path="/" render={ () => (<Posts />)} /> */}
+        {/* <Route path="/new" render={() => (<PostForm />)} /> */}
+        
+        <Route exact path="/" component={Posts} />
+        <Route path="/new" component={PostForm} />
+        <Route path="/:category/:id" component={PostDetail} />
 
       </Container>
       

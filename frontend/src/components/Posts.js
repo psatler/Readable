@@ -1,45 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { Item, Button, Icon, Label }from 'semantic-ui-react'
-import { showTime } from '../utils/helpers'
+import { Item, Button }from 'semantic-ui-react'
+// import { showTime } from '../utils/helpers'
+import { PostItem } from './PostItem'
+
 /**
  * Redux
  */
 import { connect } from 'react-redux'
 import { fetchAllPosts } from '../actions' //importing an action
-
-
-const ItemPost = ({props}) => {
-    return (
-        <Item>
-            <Item.Content>
-                <Item.Header >{props.title}</Item.Header>
-                <Item.Meta><Icon name="time" /> Submitted by <strong>{props.author}</strong>  
-                    {`${showTime(props.timestamp)} `} 
-                    to 
-                    <strong>{` ${props.category} `}</strong> 
-                </Item.Meta>
-                {/* <Item.Description>
-                    {props.body}
-                </Item.Description> */}
-                <Item.Extra>
-                    
-                    <Icon name='arrow up' onClick={()=> {console.log('hduahsduh')}} />
-                        <Label circular>{props.voteScore}</Label>
-                    <Icon name='arrow down' />
-
-                    <Label size='mini' basic color='black' >{props.commentCount} comments</Label>
-                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('bosta')}}> Click Here for Details </Label>
-                    
-                </Item.Extra>
-                
-            </Item.Content>
-        </Item>
-
-    )
-}
-    
 
 class Posts extends Component {
     componentDidMount(){
@@ -50,7 +20,19 @@ class Posts extends Component {
         const posts = this.props.posts;
         return (
             posts.map( post => ( 
-                <ItemPost key={post.id} props={post} />
+                // <ItemPost key={post.id} props={post} />
+                <PostItem key={post.id} 
+                    id={post.id}
+                    category={post.category}
+                    title={post.title}
+                    author={post.author}
+                    timestamp={post.timestamp}
+                    voteScore={post.voteScore}
+                    commentCount={post.commentCount}
+                    // body={post.body}
+                
+                // props={post} isDetail={false} 
+                />
                 )
             )
         )
