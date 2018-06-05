@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux'
 // import { FETCH_ALL_POSTS } from '../actions/types'
-import {FETCH_ALL_POSTS, GET_ALL_CATEGORIES, ADD_NEW_POST} from '../actions'
+import {FETCH_ALL_POSTS, 
+        GET_ALL_CATEGORIES, 
+        ADD_NEW_POST,
+        GET_POST_DETAIL
+        } from '../actions'
 
 
 const initialState = {
     posts: [],
+    // post: [],
+    post: {},
 }
 
 const postReducer = (state = initialState, action) => {
@@ -22,6 +28,13 @@ const postReducer = (state = initialState, action) => {
                 // ...state,
                 posts: state.posts.concat(newPost), //contatenating the newly created post into old array of posts
             };
+        
+        case GET_POST_DETAIL:
+            return {
+                ...state,
+                // post: [action.payload], //in this case will be a single post detail
+                post: action.payload, //in this case will be a single post detail
+            }
 
         default:
             return state;

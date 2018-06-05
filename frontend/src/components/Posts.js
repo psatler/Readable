@@ -30,8 +30,6 @@ class Posts extends Component {
                     voteScore={post.voteScore}
                     commentCount={post.commentCount}
                     // body={post.body}
-                
-                // props={post} isDetail={false} 
                 />
                 )
             )
@@ -64,6 +62,6 @@ const mapStateToPros = (state) => ({
     posts: state.postReducer.posts
   })
   
-  // const mapDispatchToProps = (dispatch)
+  // const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToPros, { fetchAllPosts })(Posts);

@@ -32,7 +32,8 @@ export const PostItem = (props) => {
                     <Icon name='arrow down' />
 
                     <Label size='mini' basic color='black' >{props.commentCount} comments</Label>
-                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('bosta')}}> Click Here for Details </Label>
+                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Edit')}}> Edit </Label>
+                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Delete')}}> Delete </Label>
                     
                 </Item.Extra>
                 

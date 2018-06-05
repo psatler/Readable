@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
+import { PostItem } from './PostItem'
+
+//redux
+import { connect } from 'react-redux'
+import { fetchPostDetail } from '../actions'
 
 
 
@@ -10,39 +16,55 @@ class PostDetail extends Component {
 
     componentDidMount(){
         const id = this.props.match.params.id;
+        this.props.fetchPostDetail(id);
         console.log('id',this.props.match);
     }
 
-    render() {
+    displayPost = () => {
+        const post = this.props.post;
+        console.log('POsts', post.hasOwnProperty('id'))
+        // console.log('postdisplayPost', post)
+
         return (
+            post.hasOwnProperty('id') && //avoiding errors complaints about constructor undefined inside PostItem
+            <PostItem 
+                    key={post.id} 
+                    id={post.id}
+                    category={post.category}
+                    title={post.title}
+                    author={post.author}
+                    timestamp={post.timestamp}
+                    voteScore={post.voteScore}
+                    commentCount={post.commentCount}
+                    body={post.body}
+            />
+        )
+    }
+
+    render() {
+        const { post } = this.props
+        console.log('post', post)
+
+        return (
+
             <div>
-                <h3>Id: {this.props.match.params.id}</h3>
-                <h3>Id: {this.props.match.params.category}</h3>
+                {this.displayPost()}    
 
 
-                <div>
-                    <div>Title</div>
-                    <div>Title</div>
-                </div>
-
-                
-                {/* <Child /> */}
-                {/* <Form onSubmit={this.handleSubmit}>
-                    <Form.Input required placeholder='Insert the post title' name='title' value={title} 
-                        onChange={this.handleChange} />
-                    <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
-                        onChange={this.handleChange} />
-                    <Form.Dropdown fluid selection placeholder='Select Category' options={options} 
-                        name='category' value={category} onChange={this.handleChange}
-                        />
-                    <Form.Input required placeholder='Author name' name='author' value={author} 
-                        onChange={this.handleChange} />
-                    <Form.Button content='Submit' />
-                </Form> */}
-            
             </div>
         )
     }
 }
 
-export default PostDetail;
+
+PostDetail.propTypes = {
+    post: PropTypes.object.isRequired,
+}
+
+const mapStateToPros = (state) => ({
+    post: state.postReducer.post
+})
+
+
+
+export default connect(mapStateToPros, {fetchPostDetail})(PostDetail);
