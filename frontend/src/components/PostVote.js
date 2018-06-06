@@ -7,21 +7,16 @@ import {connect} from 'react-redux';
 import { voteOnPostThunk } from '../actions'
 
 class PostVote extends Component {
-    handleChange = (e, { name, value }) => {}
-    handleSubmit = () => {}
 
     render(){
         const id = this.props.id;
-        console.log('postVote', id)
-
+        // console.log('postVote', id)
         return (
-            
             <span>
             <Icon name='arrow up' onClick={()=> {this.props.voteOnPostThunk(id,"upVote")}} />
                     <Label circular>{this.props.voteScore}</Label>
             <Icon name='arrow down' onClick={()=> {this.props.voteOnPostThunk(id,"downVote")}} />
             </span>
-            
         )
     }
 }

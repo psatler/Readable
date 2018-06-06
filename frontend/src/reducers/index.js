@@ -37,24 +37,10 @@ const postReducer = (state = initialState, action) => {
                 post: action.payload, //in this case will be a single post detail
             }
 
-        // case VOTE_ON_POST:
-        //     console.log('action', action.payload)
-        //     const np = action.payload
-        //     const postID = action.payload.id;
-        //     // const index = state.posts.findIndex(post => post.id === postID)
-        //     // state.posts[index] = np
-        //     const newState = state.posts.filter(post => post.id !== postID)
-
-        //     return {
-        //         // ...state,
-        //         posts: newState.concat(np), //concatenating the updated post with the old ones
-        //         post: np,
-        //     }
-
         case VOTE_ON_POST:
             const votedPost = action.payload
             const updatedPostID = action.payload.id;
-            
+
             //code inspired by https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns
             const postsUpdated = state.posts.map( post => {
                 if(post.id === updatedPostID ) { //the one we looking for

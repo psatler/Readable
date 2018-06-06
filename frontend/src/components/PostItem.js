@@ -34,10 +34,7 @@ export const PostItem = (props) => {
 
                 <Item.Extra>
                     <PostVote id={props.id} voteScore={props.voteScore} />
-
-                    {/* <Icon name='arrow up' onClick={()=> {console.log('hduahsduh')}} />
-                        <Label circular>{props.voteScore}</Label>
-                    <Icon name='arrow down' /> */}
+                    
 
                     {/*exhibiting or not based upon page location: main page or post detail */}
                    {!props.isDetail && <Label size='mini' basic color='black' >{props.commentCount} comments</Label> } 
