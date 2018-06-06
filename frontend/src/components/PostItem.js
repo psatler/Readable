@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { Item, Button, Icon, Label }from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
+import  PostVote  from './PostVote'
 
 
 
@@ -32,10 +33,11 @@ export const PostItem = (props) => {
                 <Item.Description> {props.body} </Item.Description>
 
                 <Item.Extra>
-                    
-                    <Icon name='arrow up' onClick={()=> {console.log('hduahsduh')}} />
+                    <PostVote id={props.id} voteScore={props.voteScore} />
+
+                    {/* <Icon name='arrow up' onClick={()=> {console.log('hduahsduh')}} />
                         <Label circular>{props.voteScore}</Label>
-                    <Icon name='arrow down' />
+                    <Icon name='arrow down' /> */}
 
                     {/*exhibiting or not based upon page location: main page or post detail */}
                    {!props.isDetail && <Label size='mini' basic color='black' >{props.commentCount} comments</Label> } 
@@ -50,4 +52,7 @@ export const PostItem = (props) => {
 
     )
 }
+
+
+// export default connect(null, {fetchPostDetail})(PostItem);
 

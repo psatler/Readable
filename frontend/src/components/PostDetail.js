@@ -11,8 +11,8 @@ import { fetchPostDetail } from '../actions'
 
 class PostDetail extends Component {
 
-    handleChange = (e, { name, value }) => {}
-    handleSubmit = () => {}
+    // handleChange = (e, { name, value }) => {}
+    // handleSubmit = () => {}
 
     componentDidMount(){
         const id = this.props.match.params.id;

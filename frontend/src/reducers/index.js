@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 import {FETCH_ALL_POSTS, 
         GET_ALL_CATEGORIES, 
         ADD_NEW_POST,
-        GET_POST_DETAIL
+        GET_POST_DETAIL,
+        VOTE_ON_POST
         } from '../actions'
 
 
@@ -34,6 +35,18 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 // post: [action.payload], //in this case will be a single post detail
                 post: action.payload, //in this case will be a single post detail
+            }
+
+        case VOTE_ON_POST:
+            console.log('action', action.payload)
+            const np = action.payload
+            const postID = action.payload.id;
+            const newState = state.posts.filter(post => post.id !== postID)
+
+            return {
+                // ...state,
+                posts: newState.concat(np), //concatenating the updated post with the old ones
+                post: np,
             }
 
         default:

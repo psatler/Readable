@@ -5,6 +5,7 @@ export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const GET_POST_DETAIL = 'GET_POST_DETAIL'
+export const VOTE_ON_POST = 'VOTE_ON_POST'
 
 /**
  * ############### action creators ###############
@@ -35,6 +36,13 @@ export const getPostDetailAction = (postDetails) => {
     return {
         type: GET_POST_DETAIL,
         payload: postDetails
+    }
+}
+
+export const voteOnPostAction = (post) => {
+    return {
+        type: VOTE_ON_POST,
+        payload: post
     }
 }
 
@@ -70,4 +78,9 @@ export const fetchPostDetail = (postID) => dispatch => {
             console.log('postInsideThunk', post)
             dispatch(getPostDetailAction(post))
         } )
+}
+
+export const voteOnPostThunk = (postID, option) => dispatch => {
+    API.voteOnPost(postID, option)
+        .then( post => dispatch(voteOnPostAction(post)))
 }
