@@ -19,6 +19,15 @@ class PostsByCategory extends Component {
         this.props.fetchPostsByCategory(category);
         
     }
+
+    componentWillReceiveProps(nextProps) {
+        const oldCategory = this.props.match.params.category;
+        const newCategory = nextProps.match.params.category;
+        if(oldCategory !== newCategory) {
+            this.props.fetchPostsByCategory(newCategory);
+        }
+
+    }
     
     displayPosts = () => {
         const postsByCategory = this.props.postsByCategory;

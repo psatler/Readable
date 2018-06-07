@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import {Link} from 'react-router-dom'
+
 
 class MenuApp extends Component {
-    state = { activeItem: 'bio' }
+
+    state = { activeItem: 'all' }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -10,9 +13,18 @@ class MenuApp extends Component {
         const { activeItem } = this.state
 
         return (
-        <Menu tabular>
-            <Menu.Item name='bio' active={activeItem === 'bio'} onClick={this.handleItemClick} />
-            <Menu.Item name='photos' active={activeItem === 'photos'} onClick={this.handleItemClick} />
+        <Menu pointing>
+            <Link to="/" >
+            <Menu.Item name='All' active={activeItem === 'all'} onClick={this.handleItemClick} />
+            </Link>
+
+            <Link to="/react" >
+            <Menu.Item name='React' active={activeItem === 'react'} onClick={this.handleItemClick} />
+            </Link>
+
+            <Link to="/redux" >
+            <Menu.Item name='Redux' active={activeItem === 'redux'} onClick={this.handleItemClick} />
+            </Link>
         </Menu>
         )
     }
