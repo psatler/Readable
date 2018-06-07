@@ -6,6 +6,7 @@ import PostForm from './PostForm';
 import Posts from './Posts'
 import PostDetail from './PostDetail'
 import PostEdit from './PostEdit';
+import MenuApp from './Menu'
 
 //Using URL parameters with React Router, by Tyler McGinnis: https://www.youtube.com/watch?v=CdBzemiFCfM
 
@@ -21,6 +22,8 @@ class App extends Component {
 
         {/* <Route exact path="/" render={ () => (<Posts />)} /> */}
         {/* <Route path="/new" render={() => (<PostForm />)} /> */}
+
+        <MenuApp />
         
         <Route exact path="/" component={Posts} />
         <Route path="/new" component={PostForm} />
