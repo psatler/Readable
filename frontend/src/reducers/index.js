@@ -4,7 +4,8 @@ import {FETCH_ALL_POSTS,
         GET_ALL_CATEGORIES, 
         ADD_NEW_POST,
         GET_POST_DETAIL,
-        VOTE_ON_POST
+        VOTE_ON_POST,
+        EDIT_POST,
         } from '../actions'
 
 
@@ -52,6 +53,21 @@ const postReducer = (state = initialState, action) => {
             return {
                 posts: postsUpdated,
                 post: votedPost
+            }
+
+        case EDIT_POST:
+            // console.log('POST ATUALIZADO', action.payload)
+            const editedPost = action.payload; //the post that was updated
+            const id = action.payload.id;
+            const newPostsArray = state.posts.map( post => {
+                if(post.id === id) {
+                    return editedPost
+                }
+                return post;
+            })
+            return {
+                posts: newPostsArray,
+                post: editedPost
             }
 
 

@@ -6,6 +6,7 @@ export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const GET_POST_DETAIL = 'GET_POST_DETAIL'
 export const VOTE_ON_POST = 'VOTE_ON_POST'
+export const EDIT_POST = 'EDIT_POST'
 
 /**
  * ############### action creators ###############
@@ -46,6 +47,13 @@ export const voteOnPostAction = (post) => {
     }
 }
 
+export const editPostAction = (post) => {
+    return {
+        type: EDIT_POST,
+        payload: post //updated post
+    }
+}
+
 /**
  * ############### Thunks ###############
  */
@@ -83,4 +91,9 @@ export const fetchPostDetail = (postID) => dispatch => {
 export const voteOnPostThunk = (postID, option) => dispatch => {
     API.voteOnPost(postID, option)
         .then( post => dispatch(voteOnPostAction(post)))
+}
+
+export const editPostThunk = (postID, title, body) => dispatch => {
+    API.editPost(postID,title,body)
+        .then( post => dispatch(editPostAction(post)))
 }

@@ -39,7 +39,10 @@ export const PostItem = (props) => {
                     {/*exhibiting or not based upon page location: main page or post detail */}
                    {!props.isDetail && <Label size='mini' basic color='black' >{props.commentCount} comments</Label> } 
 
-                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Edit')}}> Edit </Label>
+                    <Link to={`/${props.category}/${props.id}/edit`}>
+                        <Label size='mini' basic color='black'> Edit </Label>
+                    </Link>
+
                     <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Delete')}}> Delete </Label>
                     
                 </Item.Extra>

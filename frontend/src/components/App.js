@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react'
 import PostForm from './PostForm';
 import Posts from './Posts'
 import PostDetail from './PostDetail'
+import PostEdit from './PostEdit';
 
 //Using URL parameters with React Router, by Tyler McGinnis: https://www.youtube.com/watch?v=CdBzemiFCfM
 
@@ -23,7 +24,8 @@ class App extends Component {
         
         <Route exact path="/" component={Posts} />
         <Route path="/new" component={PostForm} />
-        <Route path="/:category/:id" component={PostDetail} />
+        <Route exact path="/:category/:id" component={PostDetail} />
+        <Route path="/:category/:id/edit" component={PostEdit} />
 
       </Container>
       
