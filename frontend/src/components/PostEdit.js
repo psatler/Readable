@@ -21,24 +21,26 @@ class PostEdit extends Component {
         const id = this.props.match.params.id;
         this.props.fetchPostDetail(id)
         const post = this.props.post; //props.post was mapped below
+        
         this.setState(
+            //using the "?" below to avoid warnings complaining about changing from uncontrolled to controlled components (and vice-versa) after a page refresh
             { 
                 isLoading: false,
-                title: post.title,
-                body: post.body,
-                category: post.category,
-                author: post.author,
+                title: post.title ? post.title : ' ',
+                body: post.body ? post.body : ' ',
+                category: post.category ? post.category : ' ',
+                author: post.author ? post.author : ' '
             })
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', nextProps);
+        // console.log('componentWillReceiveProps', nextProps);
         if(nextProps){
             this.setState({
-                title: nextProps.post.title ? nextProps.post.title : '',
-                body: nextProps.post.body ? nextProps.post.body : '',
-                category: nextProps.post.category ? nextProps.post.category : '' ,
-                author: nextProps.post.author ? nextProps.post.author : '',
+                title: nextProps.post.title ? nextProps.post.title : ' ',
+                body: nextProps.post.body ? nextProps.post.body : ' ',
+                category: nextProps.post.category ? nextProps.post.category : ' ' ,
+                author: nextProps.post.author ? nextProps.post.author : ' ',
             })
         }
     }
@@ -82,4 +84,11 @@ const mapStateToPros = (state) => ({
     post: state.postReducer.post
 })
 
-export default connect(mapStateToPros, {fetchPostDetail, editPostThunk})(PostEdit);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchPostDetail: (id) => dispatch(fetchPostDetail(id)),
+        editPostThunk: (postID, title, body) => dispatch(editPostThunk(postID, title, body)),
+    }
+}
+
+export default connect(mapStateToPros, mapDispatchToProps)(PostEdit);
