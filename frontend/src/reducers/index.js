@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 // import { FETCH_ALL_POSTS } from '../actions/types'
 import {FETCH_ALL_POSTS, 
-        GET_ALL_CATEGORIES, 
+        GET_ALL_CATEGORIES,
+        GET_POSTS_BY_CATEGORY, 
         ADD_NEW_POST,
         GET_POST_DETAIL,
         VOTE_ON_POST,
@@ -70,6 +71,12 @@ const postReducer = (state = initialState, action) => {
                 post: editedPost
             }
 
+        case GET_POSTS_BY_CATEGORY:
+            return {
+                ...state,
+                posts: action.payload
+            }
+
 
         default:
             return state;
@@ -84,6 +91,7 @@ const postReducer = (state = initialState, action) => {
 
 const catRed_InitState = {
     categories: [],   
+    postsByCategory: [],   
 }
 
 const categoryReducer = (state = catRed_InitState, action) => {
@@ -94,6 +102,7 @@ const categoryReducer = (state = catRed_InitState, action) => {
                 ...state,
                 categories: action.payload
             }
+
         default:
             return state;
     }

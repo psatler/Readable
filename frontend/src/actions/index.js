@@ -1,17 +1,20 @@
 // import { FETCH_ALL_POSTS } from './types'
 import * as API from '../utils/api'
 
-export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
+
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES';
+export const GET_POSTS_BY_CATEGORY = 'GET_POSTS_BY_CATEGORY';
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const ADD_NEW_POST = 'ADD_NEW_POST';
-export const GET_POST_DETAIL = 'GET_POST_DETAIL'
-export const VOTE_ON_POST = 'VOTE_ON_POST'
-export const EDIT_POST = 'EDIT_POST'
+export const GET_POST_DETAIL = 'GET_POST_DETAIL';
+export const VOTE_ON_POST = 'VOTE_ON_POST';
+export const EDIT_POST = 'EDIT_POST';
 
 /**
  * ############### action creators ###############
  */
 
+// -- categories
 export const getCategories = (categories) => {
     return {
         type: GET_ALL_CATEGORIES,
@@ -19,6 +22,14 @@ export const getCategories = (categories) => {
     }
 }
 
+export const getPostsByCategoryAction = (posts) => {
+    return {
+        type: GET_POSTS_BY_CATEGORY,
+        payload: posts,
+    }
+}
+
+// -- posts
 export const getPosts = (posts) => {
     return {
         type: FETCH_ALL_POSTS,
@@ -58,15 +69,24 @@ export const editPostAction = (post) => {
  * ############### Thunks ###############
  */
 
+// -- categories
 export const fetchCategories = () => dispatch => {
     // console.log('fetching!');
-API.getAllCategories()
-    .then( categories => {
-        // console.log('fetching!', categories);
-        dispatch(getCategories(categories))
-    })
+    API.getAllCategories()
+        .then( categories => {
+            // console.log('fetching!', categories);
+            dispatch(getCategories(categories))
+        })
 }
 
+export const fetchPostsByCategory = (category) => dispatch => {
+    API.getPostsByCategory(category)
+        .then( posts => {
+            dispatch(getPostsByCategoryAction(posts))
+        })
+}
+
+// -- posts
 export const fetchAllPosts = () => dispatch => {
     // console.log('fetching!');
     API.getAllPosts()
