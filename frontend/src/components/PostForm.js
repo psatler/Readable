@@ -91,7 +91,7 @@ class PostForm extends Component {
 }
 
 
-const mapDispatchToPros = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         fetchCategories: () => dispatch(fetchCategories()),
         addNewPost: (newPost) => dispatch(addNewPost(newPost))
@@ -110,4 +110,4 @@ PostForm.propTypes = {
     categories: PropTypes.array.isRequired,
 }
 
-export default connect(mapStateToProps, mapDispatchToPros)(PostForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PostForm);

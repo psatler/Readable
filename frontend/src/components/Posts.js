@@ -13,6 +13,7 @@ import { fetchAllPosts } from '../actions' //importing an action
 
 class Posts extends Component {
     componentDidMount(){
+        const category = this.props.match.params.category;
         this.props.fetchAllPosts();
     }
 
