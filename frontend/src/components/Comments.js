@@ -4,45 +4,46 @@ import { Button, Comment, Form, Icon, Label } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 
 import CommentForm from './CommentForm'
+import CommentItem from './CommentItem'
 
 //redux
 import { connect } from 'react-redux'
 import { fetchCommentsFromPostThunk } from '../actions'
 
-const CommentItem = (props) => {
-    return (
-        <span>
-        {/* <Comment.Group > */}
-            <Comment>
-            {/* <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' /> */}
-            <Comment.Content>
-                <Comment.Author>
-                    {props.author} 
-                    <Comment.Metadata>
-                        {` ${showTime(props.timestamp)} `} 
-                    </Comment.Metadata>
-                </Comment.Author>
+// const CommentItem = (props) => {
+//     return (
+//         <span>
+//         {/* <Comment.Group > */}
+//             <Comment>
+//             {/* <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' /> */}
+//             <Comment.Content>
+//                 <Comment.Author>
+//                     {props.author} 
+//                     <Comment.Metadata>
+//                         {` ${showTime(props.timestamp)} `} 
+//                     </Comment.Metadata>
+//                 </Comment.Author>
                 
-                {/* <Comment.Metadata>{` ${showTime(props.timestamp)} `} </Comment.Metadata> */}
-                <Comment.Text>
-                {props.body}
-                </Comment.Text>
+//                 {/* <Comment.Metadata>{` ${showTime(props.timestamp)} `} </Comment.Metadata> */}
+//                 <Comment.Text>
+//                 {props.body}
+//                 </Comment.Text>
                 
-                <Comment.Actions>
-                {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
-                <Comment.Action><Icon name='arrow up' onClick={()=> {}} /></Comment.Action>
-                <Comment.Action>{props.voteScore}</Comment.Action>
-                <Comment.Action><Icon name='arrow down' onClick={()=> {}} /></Comment.Action>
-                <Comment.Action>Edit</Comment.Action>
-                <Comment.Action>Delete</Comment.Action>
+//                 <Comment.Actions>
+//                 {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
+//                 <Comment.Action><Icon name='arrow up' onClick={()=> {}} /></Comment.Action>
+//                 <Comment.Action>{props.voteScore}</Comment.Action>
+//                 <Comment.Action><Icon name='arrow down' onClick={()=> {}} /></Comment.Action>
+//                 <Comment.Action>Edit</Comment.Action>
+//                 <Comment.Action>Delete</Comment.Action>
                 
-                </Comment.Actions>
-            </Comment.Content>
-            </Comment>
+//                 </Comment.Actions>
+//             </Comment.Content>
+//             </Comment>
         
-        </span>
-        )
-    }
+//         </span>
+//         )
+//     }
 
 
 class Comments extends Component {
@@ -66,9 +67,12 @@ class Comments extends Component {
             <span>
                 <h3>{comments.length} Comments </h3>
 
+                <CommentForm parentId={postID} />
+
                 <Comment.Group >
                 {comments.map( c => (
                     <CommentItem 
+                        id={c.id}
                         key={c.id}
                         author={c.author}
                         timestamp={c.timestamp}
@@ -78,7 +82,7 @@ class Comments extends Component {
                 ))}
                 </Comment.Group >
                 
-                <CommentForm parentId={postID} />
+                
             </span>     
             
         )
