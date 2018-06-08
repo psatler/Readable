@@ -10,6 +10,7 @@ import {FETCH_ALL_POSTS,
         GET_COMMENTS_FROM_POST,
         ADD_COMMENT,
         VOTE_ON_COMMENT,
+        EDIT_COMMENT,
         } from '../actions'
 
 
@@ -122,6 +123,20 @@ const commentReducer = (state = commentReducer_InitialState, action) => {
             return {
                 comments: newCommentsArray,
                 comment: commentVoted,
+            }
+
+        case EDIT_COMMENT:
+            const commentEdited = action.payload;
+            const commentsArray = state.comments.map( comment => {
+                if(comment.id === action.payload.id){ //if equal, update the comment object
+                    return commentEdited;
+                }
+                //if not, just return the old ones
+                return comment;
+            })
+            return {
+                comments: commentsArray,
+                comment: commentEdited,
             }
 
         default:

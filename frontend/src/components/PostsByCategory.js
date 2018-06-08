@@ -50,7 +50,7 @@ class PostsByCategory extends Component {
     }
 
     render() {
-        console.log('posts', this.props.postsByCategory)
+        // console.log('posts', this.props.postsByCategory)
         return (
             <div>
                 <Link to="/new" > 

@@ -11,7 +11,8 @@ export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const GET_COMMENTS_FROM_POST = 'GET_COMMENTS_FROM_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
-export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT'
+export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
 
 /**
  * ############### action creators ###############
@@ -90,6 +91,13 @@ export const voteOnCommentAction = (comment) => {
     }
 }
 
+export const editCommentAction = (comment) => {
+    return {
+        type: EDIT_COMMENT,
+        payload: comment,
+    }
+}
+
 
 /**
  * ############### Thunks ###############
@@ -160,4 +168,9 @@ export const addCommentThunk = (newComment) => dispatch => {
 export const voteOnCommentThunk = (commentId, option) => dispatch => {
     API.voteOnComment(commentId, option)
         .then( updatedComment => dispatch(voteOnCommentAction(updatedComment)))
+}
+
+export const editCommentThunk = (commentId, timestamp, body) => dispatch => {
+    API.editComment(commentId, timestamp, body)
+        .then( comment => dispatch(editCommentAction(comment)))
 }
