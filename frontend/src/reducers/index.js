@@ -8,6 +8,7 @@ import {FETCH_ALL_POSTS,
         VOTE_ON_POST,
         EDIT_POST,
         GET_COMMENTS_FROM_POST,
+        ADD_COMMENT,
         } from '../actions'
 
 
@@ -78,6 +79,12 @@ const postReducer = (state = initialState, action) => {
                 posts: action.payload
             }
 
+        // case ADD_COMMENT:
+        //     console.log('dasdasd', action.payload.parentId)
+        //     return {
+        //         ...state,
+        //     }
+
 
         default:
             return state;
@@ -98,6 +105,13 @@ const commentReducer = (state = commentReducer_InitialState, action) => {
             return {
                 ...state,
                 comments: action.payload,
+            }
+
+        case ADD_COMMENT:
+            const newComment = action.payload;
+            return {
+                ...state,
+                comments: state.comments.concat(newComment),
             }
 
         default:

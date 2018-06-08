@@ -10,6 +10,7 @@ export const GET_POST_DETAIL = 'GET_POST_DETAIL';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const GET_COMMENTS_FROM_POST = 'GET_COMMENTS_FROM_POST'
+export const ADD_COMMENT = 'ADD_COMMENT'
 
 /**
  * ############### action creators ###############
@@ -74,6 +75,13 @@ export const getCommentsFromPostAction = (comments) => {
     }
 }
 
+export const addCommentAction = (newComment) => {
+    return {
+        type: ADD_COMMENT,
+        payload: newComment,
+    }
+}
+
 /**
  * ############### Thunks ###############
  */
@@ -112,7 +120,7 @@ export const addNewPost = (newPost) => dispatch => {
 export const fetchPostDetail = (postID) => dispatch => {
     API.getPostDetail(postID)
         .then(post => {
-            console.log('postInsideThunk', post)
+            // console.log('postInsideThunk', post)
             dispatch(getPostDetailAction(post))
         } )
 }
@@ -132,4 +140,10 @@ export const editPostThunk = (postID, title, body) => dispatch => {
 export const fetchCommentsFromPostThunk = (postID) => dispatch => {
     API.getCommentsFromPost(postID)
         .then( comments => dispatch(getCommentsFromPostAction(comments)))
+}
+
+
+export const addCommentThunk = (newComment) => dispatch => {
+    API.addComment(newComment)
+        .then( comment => dispatch(addCommentAction(comment)))
 }

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Button, Comment, Form, Icon, Label } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 
+import CommentForm from './CommentForm'
+
 //redux
 import { connect } from 'react-redux'
 import { fetchCommentsFromPostThunk } from '../actions'
@@ -37,33 +39,18 @@ const CommentItem = (props) => {
                 </Comment.Actions>
             </Comment.Content>
             </Comment>
-
-        {/* </Comment.Group> */}
-            {/* <Form reply>
-                <Form.TextArea />
-                <Button content='Add Comment' labelPosition='left' icon='edit' primary />
-            </Form> */}
         
         </span>
         )
     }
 
 
-    const CommentForm = (props) => {
-        return (
-            <Form reply>
-                <Form.TextArea />
-                <Button content='Add Comment' labelPosition='left' icon='edit' primary />
-            </Form>
-        ) 
-    }
-
 class Comments extends Component {
     
 
     componentDidMount(){
         // const id = this.props.match.params.id;
-        const id = this.props.postID;
+        const id = this.props.postID; //here the postID comes from the parent component 
         this.props.fetchCommentsFromPostThunk(id);
         // console.log('id',this.props.match);
     }
@@ -72,11 +59,13 @@ class Comments extends Component {
 
     render() {
         const {comments} = this.props;
-        console.log('comments',comments)
-        return (
-            
-                
-            <div>
+        // console.log('comments',comments)
+        const { postID } = this.props;
+
+        return (        
+            <span>
+                <h3>{comments.length} Comments </h3>
+
                 <Comment.Group >
                 {comments.map( c => (
                     <CommentItem 
@@ -89,8 +78,8 @@ class Comments extends Component {
                 ))}
                 </Comment.Group >
                 
-                <CommentForm />
-            </div>     
+                <CommentForm parentId={postID} />
+            </span>     
             
         )
     }

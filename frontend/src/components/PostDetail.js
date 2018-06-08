@@ -13,9 +13,6 @@ import { fetchPostDetail } from '../actions'
 
 class PostDetail extends Component {
 
-    // handleChange = (e, { name, value }) => {}
-    // handleSubmit = () => {}
-
     componentDidMount(){
         const id = this.props.match.params.id;
         this.props.fetchPostDetail(id);
@@ -23,8 +20,9 @@ class PostDetail extends Component {
 
         // this.props.fetchCommentsFromPostThunk(id);
 
-        
     }
+
+    
 
     displayPost = () => {
         const post = this.props.post;
@@ -58,14 +56,13 @@ class PostDetail extends Component {
 
     render() {
         const { post } = this.props
-        console.log('post', post)
 
         return (
 
             <div>
                 {this.displayPost()}
 
-                <h3>Comments</h3>    
+                {/* <h3>Comments</h3>     */}
 
                 {this.displayComments()}
 
