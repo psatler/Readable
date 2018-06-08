@@ -10,41 +10,6 @@ import CommentItem from './CommentItem'
 import { connect } from 'react-redux'
 import { fetchCommentsFromPostThunk } from '../actions'
 
-// const CommentItem = (props) => {
-//     return (
-//         <span>
-//         {/* <Comment.Group > */}
-//             <Comment>
-//             {/* <Comment.Avatar as='a' src='/assets/images/avatar/small/joe.jpg' /> */}
-//             <Comment.Content>
-//                 <Comment.Author>
-//                     {props.author} 
-//                     <Comment.Metadata>
-//                         {` ${showTime(props.timestamp)} `} 
-//                     </Comment.Metadata>
-//                 </Comment.Author>
-                
-//                 {/* <Comment.Metadata>{` ${showTime(props.timestamp)} `} </Comment.Metadata> */}
-//                 <Comment.Text>
-//                 {props.body}
-//                 </Comment.Text>
-                
-//                 <Comment.Actions>
-//                 {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
-//                 <Comment.Action><Icon name='arrow up' onClick={()=> {}} /></Comment.Action>
-//                 <Comment.Action>{props.voteScore}</Comment.Action>
-//                 <Comment.Action><Icon name='arrow down' onClick={()=> {}} /></Comment.Action>
-//                 <Comment.Action>Edit</Comment.Action>
-//                 <Comment.Action>Delete</Comment.Action>
-                
-//                 </Comment.Actions>
-//             </Comment.Content>
-//             </Comment>
-        
-//         </span>
-//         )
-//     }
-
 
 class Comments extends Component {
     

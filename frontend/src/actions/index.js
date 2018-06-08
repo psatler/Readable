@@ -9,6 +9,7 @@ export const ADD_NEW_POST = 'ADD_NEW_POST';
 export const GET_POST_DETAIL = 'GET_POST_DETAIL';
 export const VOTE_ON_POST = 'VOTE_ON_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const DELETE_POST = 'DELETE_POST';
 export const GET_COMMENTS_FROM_POST = 'GET_COMMENTS_FROM_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
@@ -32,6 +33,8 @@ export const getPostsByCategoryAction = (posts) => {
         payload: posts,
     }
 }
+
+
 
 // -- posts
 export const getPosts = (posts) => {
@@ -68,6 +71,15 @@ export const editPostAction = (post) => {
         payload: post //updated post
     }
 }
+
+export const deletePostAction = (deletedPost) => {
+    // console.log('deletePostAction', post)
+    return {
+        type: DELETE_POST,
+        payload: deletedPost,
+    }
+}
+
 
 // -- comments
 export const getCommentsFromPostAction = (comments) => {
@@ -150,6 +162,11 @@ export const voteOnPostThunk = (postID, option) => dispatch => {
 export const editPostThunk = (postID, title, body) => dispatch => {
     API.editPost(postID,title,body)
         .then( post => dispatch(editPostAction(post)))
+}
+
+export const deletePostThunk = (postID) => dispatch => {
+    API.deletePost(postID)
+        .then( deletedPost => dispatch(deletePostAction(deletedPost)))
 }
 
 

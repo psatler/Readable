@@ -11,6 +11,7 @@ import {FETCH_ALL_POSTS,
         ADD_COMMENT,
         VOTE_ON_COMMENT,
         EDIT_COMMENT,
+        DELETE_POST,
         } from '../actions'
 
 
@@ -32,7 +33,7 @@ const postReducer = (state = initialState, action) => {
         case ADD_NEW_POST:
             const newPost = action.payload;
             return {
-                // ...state,
+                ...state,
                 posts: state.posts.concat(newPost), //contatenating the newly created post into old array of posts
             };
         
@@ -56,6 +57,7 @@ const postReducer = (state = initialState, action) => {
             })
 
             return {
+                ...state,
                 posts: postsUpdated,
                 post: votedPost
             }
@@ -71,8 +73,19 @@ const postReducer = (state = initialState, action) => {
                 return post;
             })
             return {
+                ...state,
                 posts: newPostsArray,
                 post: editedPost
+            }
+
+        case DELETE_POST:
+            const deletedPostId = action.payload.id;
+            // console.log('deletedPost', deletedPost)
+            const newArr = state.posts.filter( post => post.id !== deletedPostId )
+            return {
+                ...state,
+                posts: newArr,
+
             }
 
         case GET_POSTS_BY_CATEGORY:
@@ -121,6 +134,7 @@ const commentReducer = (state = commentReducer_InitialState, action) => {
                 return comment;
             })
             return {
+                ...state,
                 comments: newCommentsArray,
                 comment: commentVoted,
             }
@@ -135,6 +149,7 @@ const commentReducer = (state = commentReducer_InitialState, action) => {
                 return comment;
             })
             return {
+                ...state,
                 comments: commentsArray,
                 comment: commentEdited,
             }

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import { Item, Button, Icon, Label }from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 import  PostVote  from './PostVote'
+import PostDelete from './PostDelete'
 
 
 
@@ -42,7 +43,9 @@ export const PostItem = (props) => {
                         <Label size='mini' basic color='black'> Edit </Label>
                     </Link>
 
-                    <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Delete')}}> Delete </Label>
+                    <PostDelete id={props.id} />
+
+                    {/* <Label as='a' size='mini' basic color='black' onClick={()=> {console.log('Delete')}}> Delete </Label> */}
                     
                 </Item.Extra>
                 

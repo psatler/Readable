@@ -24,6 +24,7 @@ class PostVote extends Component {
 PostVote.propTypes = {
     id: PropTypes.string.isRequired,
     voteScore: PropTypes.number.isRequired,
+    voteOnPostThunk: PropTypes.func.isRequired,
 }
 
 export default connect(null, {voteOnPostThunk})(PostVote);

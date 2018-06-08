@@ -22,15 +22,22 @@ class PostDetail extends Component {
 
     }
 
-    
+    isEmpty = (obj) => {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
 
     displayPost = () => {
         const post = this.props.post;
-        console.log('POsts', post.hasOwnProperty('id'))
+        console.log('POsts', post)
         // console.log('postdisplayPost', post)
 
         return (
             post.hasOwnProperty('id') && //avoiding errors complaints about constructor undefined inside PostItem
+            // this.isEmpty(post) && //avoiding errors complaints about constructor undefined inside PostItem
             <PostItem 
                     key={post.id} 
                     id={post.id}
@@ -43,6 +50,7 @@ class PostDetail extends Component {
                     body={post.body}
                     isDetail={true}
             />
+            // <span> tese</span>
         )
     }
 
