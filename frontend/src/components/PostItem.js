@@ -36,8 +36,7 @@ export const PostItem = (props) => {
                     <PostVote id={props.id} voteScore={props.voteScore} />
                     
 
-                    {/*exhibiting or not based upon page location: main page or post detail */}
-                   {!props.isDetail && <Label size='mini' basic color='black' >{props.commentCount} comments</Label> } 
+                   <Label size='mini' basic color='black' >{props.commentCount} comments</Label>  
 
                     <Link to={`/${props.category}/${props.id}/edit`}>
                         <Label size='mini' basic color='black'> Edit </Label>

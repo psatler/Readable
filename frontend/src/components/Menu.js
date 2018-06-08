@@ -21,7 +21,7 @@ class MenuApp extends Component {
 
         return (
             categories.map( cat => (
-                    <span>
+                    <span key={cat.name}>
                     <Link to={`/${cat.name}`}>
                         <Menu.Item name={`/${cat.name}`} /> 
                     </Link>

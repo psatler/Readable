@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
 import { PostItem } from './PostItem'
 
+import Comments from './Comments'
+
 //redux
 import { connect } from 'react-redux'
 import { fetchPostDetail } from '../actions'
@@ -17,7 +19,11 @@ class PostDetail extends Component {
     componentDidMount(){
         const id = this.props.match.params.id;
         this.props.fetchPostDetail(id);
-        console.log('id',this.props.match);
+        // console.log('id',this.props.match);
+
+        // this.props.fetchCommentsFromPostThunk(id);
+
+        
     }
 
     displayPost = () => {
@@ -42,6 +48,14 @@ class PostDetail extends Component {
         )
     }
 
+    displayComments = () => {
+        const id = this.props.match.params.id;
+
+        return (
+            <Comments postID={id} />
+        )
+    }
+
     render() {
         const { post } = this.props
         console.log('post', post)
@@ -49,8 +63,11 @@ class PostDetail extends Component {
         return (
 
             <div>
-                {this.displayPost()}    
+                {this.displayPost()}
 
+                <h3>Comments</h3>    
+
+                {this.displayComments()}
 
             </div>
         )
@@ -67,6 +84,13 @@ const mapStateToPros = (state) => ({
     post: state.postReducer.post
 })
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchPostDetail: (id) => dispatch(fetchPostDetail(id)),
+        // fetchCommentsFromPostThunk: (id) => dispatch(fetchCommentsFromPostThunk(id))
+    }
+}
 
 
-export default connect(mapStateToPros, {fetchPostDetail})(PostDetail);
+
+export default connect(mapStateToPros, mapDispatchToProps)(PostDetail);

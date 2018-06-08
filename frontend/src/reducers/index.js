@@ -7,6 +7,7 @@ import {FETCH_ALL_POSTS,
         GET_POST_DETAIL,
         VOTE_ON_POST,
         EDIT_POST,
+        GET_COMMENTS_FROM_POST,
         } from '../actions'
 
 
@@ -84,23 +85,44 @@ const postReducer = (state = initialState, action) => {
 }
 
 
+/**
+* COMMENT REDUCER  
+*/
+const commentReducer_InitialState = {
+    comments: [],
+}
+
+const commentReducer = (state = commentReducer_InitialState, action) => {
+    switch(action.type){
+        case GET_COMMENTS_FROM_POST:
+            return {
+                ...state,
+                comments: action.payload,
+            }
+
+        default:
+            return state;
+    }
+}
+
+
 
 /**
  * CATEGORY REDUCER
  */
 
-const catRed_InitState = {
+const categoryReducer_InitialState = {
     categories: [],   
     postsByCategory: [],   
 }
 
-const categoryReducer = (state = catRed_InitState, action) => {
+const categoryReducer = (state = categoryReducer_InitialState, action) => {
     switch(action.type){
         case GET_ALL_CATEGORIES:
             // console.log('testdas')
             return {
                 ...state,
-                categories: action.payload
+                categories: action.payload,
             }
 
         default:
@@ -112,5 +134,6 @@ const categoryReducer = (state = catRed_InitState, action) => {
 export default combineReducers({
     categoryReducer,
     postReducer,
+    commentReducer,
 })
 
