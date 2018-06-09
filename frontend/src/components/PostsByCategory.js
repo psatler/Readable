@@ -53,13 +53,14 @@ class PostsByCategory extends Component {
         // console.log('posts', this.props.postsByCategory)
         return (
             <div>
-                <Button.Group >
+                Sort By: <br/>
+                <Button.Group size="mini" >
                     <Button onClick={() => this.props.sortItensAction('byPoints')}> 
-                        Sort By Points
+                        Score
                     </Button>
                     <Button.Or />
                     <Button positive onClick={() => this.props.sortItensAction('byDate')}>
-                        Sort By Date
+                        Date
                     </Button>
                 </Button.Group>
 
