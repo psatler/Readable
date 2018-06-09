@@ -15,6 +15,10 @@ class PostDelete extends Component {
         this.props.deletePostThunk(postId);
 
         //show message telling post was deleted
+        
+        // const id = this.props.match.params.id;
+        // console.log(this.props.match)
+        // this.props.history.push('/');
     }
     
     render(){
