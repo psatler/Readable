@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+import sortBy from 'sort-by'
+
 // import { FETCH_ALL_POSTS } from '../actions/types'
 import {FETCH_ALL_POSTS, 
         GET_ALL_CATEGORIES,
@@ -13,17 +15,43 @@ import {FETCH_ALL_POSTS,
         EDIT_COMMENT,
         DELETE_POST,
         DELETE_COMMENT,
+        SORT_ITENS,
         } from '../actions'
+
 
 
 const initialState = {
     posts: [],
     // post: [],
     post: {},
+    // order: 'byPoints',
 }
 
 const postReducer = (state = initialState, action) => {
     switch(action.type){
+        case SORT_ITENS:
+            
+            const option = action.payload;
+            let newArray = state.posts.slice(); //making a shallow copy of the posts array
+            if(option === 'byPoints'){
+                newArray.sort(sortBy('voteScore')).reverse(); //ascending order
+                return {
+                    ...state,
+                    posts: newArray,
+                }
+            }
+            if(option === 'byDate'){
+                newArray.sort(sortBy('timestamp')).reverse(); //ascending order
+                return {
+                    ...state,
+                    posts: newArray,
+                }
+            }
+            return {
+                ...state,
+            }
+
+
         case FETCH_ALL_POSTS:
             // console.log('Inside reducer');
             return {
@@ -93,6 +121,30 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 posts: action.payload
             }
+
+        //adding those cases below to get commentCount from post reducer instead of comments array length in Comments.js file
+        case ADD_COMMENT: 
+            const parentId = action.payload.parentId;
+            const parentPost = state.post;
+            if(parentPost.id === parentId){
+                parentPost.commentCount+=1;
+            }
+            return {
+                ...state,
+                post: parentPost,
+            }
+
+        case DELETE_COMMENT: 
+            const parentId2 = action.payload.parentId;
+            const parentPost2 = state.post;
+            if(parentPost2.id === parentId2){
+                parentPost2.commentCount-=1;
+            }
+            return {
+                ...state,
+                post: parentPost2,
+            }
+
 
         default:
             return state;

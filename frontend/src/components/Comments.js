@@ -24,13 +24,14 @@ class Comments extends Component {
     
 
     render() {
-        const {comments} = this.props;
+        const {comments, post} = this.props;
         // console.log('comments',comments)
         const { postID } = this.props;
 
         return (        
             <span>
-                <h3>{comments.length} Comments </h3>
+                {/* <h3>{comments.length} Comments </h3> */}
+                <h3>{post.commentCount} Comments </h3>
 
                 <CommentForm parentId={postID} />
 
@@ -67,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => ({
     comments: state.commentReducer.comments,
+    post: state.postReducer.post,
 
 })
 

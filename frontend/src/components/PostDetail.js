@@ -27,12 +27,13 @@ class PostDetail extends Component {
 
     displayPost = () => {
         const post = this.props.post;
-        console.log('POsts', post)
+        // console.log('POsts', post)
         // console.log('postdisplayPost', post)
+        // console.log('Vendo o post', Object.keys(post));
 
         return (
-            post.hasOwnProperty('id') && //avoiding errors complaints about constructor undefined inside PostItem
-            // this.isEmpty(post) && //avoiding errors complaints about constructor undefined inside PostItem
+            // post.hasOwnProperty('id') && //avoiding errors complaints about constructor undefined inside PostItem
+            (Object.keys(post).length > 0) && //avoiding errors complaints about constructor undefined inside PostItem
             <PostItem 
                     key={post.id} 
                     id={post.id}
@@ -62,8 +63,8 @@ class PostDetail extends Component {
         const id = this.props.match.params.id;
         const category = this.props.match.params.category;
 
-        console.log('Vendo o post', post);
-        console.log('Vendo o post', Object.keys(post));
+        // console.log('Vendo o post', post);
+        // console.log('Vendo o post', Object.keys(post));
 
         //https://tylermcginnis.com/react-router-programmatically-navigate/
         if(Object.keys(post).length === 0 || post.error){

@@ -15,11 +15,19 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const SORT_ITENS = 'SORT_ITENS';
 
 
 /**
  * ############### action creators ###############
  */
+
+export const sortItensAction = (option) => {
+    return {
+        type: SORT_ITENS,
+        payload: option,
+    }
+}
 
 // ------ categories
 export const getCategories = (categories) => {

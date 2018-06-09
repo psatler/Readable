@@ -8,7 +8,7 @@ import { PostItem } from './PostItem'
  * Redux
  */
 import { connect } from 'react-redux'
-import { fetchPostsByCategory } from '../actions'
+import { fetchPostsByCategory, sortItensAction } from '../actions'
 
 
 
@@ -53,6 +53,18 @@ class PostsByCategory extends Component {
         // console.log('posts', this.props.postsByCategory)
         return (
             <div>
+                <Button.Group >
+                    <Button onClick={() => this.props.sortItensAction('byPoints')}> 
+                        Sort By Points
+                    </Button>
+                    <Button.Or />
+                    <Button positive onClick={() => this.props.sortItensAction('byDate')}>
+                        Sort By Date
+                    </Button>
+                </Button.Group>
+
+                {/* <Button color='black' floated='left' onClick={() => this.props.sortItensAction('byPoints')}> Sort </Button> */}
+
                 <Link to="/new" > 
                     <Button color='black' floated='right'> Create New Post</Button>
                 </Link>
@@ -69,6 +81,7 @@ class PostsByCategory extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchPostsByCategory: (category) => dispatch(fetchPostsByCategory(category)),
+        sortItensAction: (option) => dispatch(sortItensAction(option)),
     }
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { Item, Button }from 'semantic-ui-react'
+import { Item, Button}from 'semantic-ui-react'
 // import { showTime } from '../utils/helpers'
 import { PostItem } from './PostItem'
 
@@ -9,7 +9,7 @@ import { PostItem } from './PostItem'
  * Redux
  */
 import { connect } from 'react-redux'
-import { fetchAllPosts } from '../actions' //importing an action
+import { fetchAllPosts, sortItensAction } from '../actions' //importing an action
 
 class Posts extends Component {
     componentDidMount(){
@@ -41,6 +41,18 @@ class Posts extends Component {
         console.log('posts', this.props.posts)
         return (
             <div>
+                <Button.Group >
+                    <Button onClick={() => this.props.sortItensAction('byPoints')}> 
+                        Sort By Points
+                    </Button>
+                    <Button.Or />
+                    <Button positive onClick={() => this.props.sortItensAction('byDate')}>
+                        Sort By Date
+                    </Button>
+                </Button.Group>
+               
+                {/* <Button color='black' floated='left' onClick={() => this.props.sortItensAction('byPoints')} > Sort </Button> */}
+
                 <Link to="/new" > 
                     <Button color='black' floated='right'> Create New Post</Button>
                 </Link>
@@ -63,6 +75,11 @@ const mapStateToPros = (state) => ({
     posts: state.postReducer.posts
   })
   
-  // const mapDispatchToProps = (dispatch) =>
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchAllPosts: () => dispatch(fetchAllPosts()),
+        sortItensAction: (option) => dispatch(sortItensAction(option)),
+    }
+}
 
-export default connect(mapStateToPros, { fetchAllPosts })(Posts);
+export default connect(mapStateToPros, mapDispatchToProps)(Posts);
