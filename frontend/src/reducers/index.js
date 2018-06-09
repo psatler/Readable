@@ -81,12 +81,11 @@ const postReducer = (state = initialState, action) => {
 
         case DELETE_POST:
             const deletedPostId = action.payload.id;
-            // console.log('deletedPost', deletedPost)
+            console.log('deletedPost', action.payload)
             const newArr = state.posts.filter( post => post.id !== deletedPostId )
             return {
                 ...state,
                 posts: newArr,
-
             }
 
         case GET_POSTS_BY_CATEGORY:

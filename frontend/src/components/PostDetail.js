@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
 import { PostItem } from './PostItem'
+// import { Redirect } from 'react-router-dom'
+import NoMatch from './NoMatch'
 
 import Comments from './Comments'
 
@@ -22,13 +24,6 @@ class PostDetail extends Component {
 
     }
 
-    isEmpty = (obj) => {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
-                return false;
-        }
-        return true;
-    }
 
     displayPost = () => {
         const post = this.props.post;
@@ -64,6 +59,17 @@ class PostDetail extends Component {
 
     render() {
         const { post } = this.props
+        const id = this.props.match.params.id;
+        const category = this.props.match.params.category;
+
+        console.log('Vendo o post', post);
+        console.log('Vendo o post', Object.keys(post));
+
+        //https://tylermcginnis.com/react-router-programmatically-navigate/
+        if(Object.keys(post).length === 0 || post.error){
+            // return <Redirect from={`/${category}/${id}`} to="/404" />
+            return <NoMatch />
+        }
 
         return (
 
