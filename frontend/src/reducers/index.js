@@ -12,6 +12,7 @@ import {FETCH_ALL_POSTS,
         VOTE_ON_COMMENT,
         EDIT_COMMENT,
         DELETE_POST,
+        DELETE_COMMENT,
         } from '../actions'
 
 
@@ -152,6 +153,14 @@ const commentReducer = (state = commentReducer_InitialState, action) => {
                 ...state,
                 comments: commentsArray,
                 comment: commentEdited,
+            }
+
+        case DELETE_COMMENT:
+            const deletedCommentID = action.payload.id;
+            const newCommentArr = state.comments.filter( comment => comment.id !== deletedCommentID);
+            return {
+                ...state,
+                comments: newCommentArr,
             }
 
         default:

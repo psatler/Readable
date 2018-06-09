@@ -14,12 +14,14 @@ export const GET_COMMENTS_FROM_POST = 'GET_COMMENTS_FROM_POST';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const VOTE_ON_COMMENT = 'VOTE_ON_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+
 
 /**
  * ############### action creators ###############
  */
 
-// -- categories
+// ------ categories
 export const getCategories = (categories) => {
     return {
         type: GET_ALL_CATEGORIES,
@@ -36,7 +38,7 @@ export const getPostsByCategoryAction = (posts) => {
 
 
 
-// -- posts
+// ------ posts
 export const getPosts = (posts) => {
     return {
         type: FETCH_ALL_POSTS,
@@ -81,7 +83,7 @@ export const deletePostAction = (deletedPost) => {
 }
 
 
-// -- comments
+// ----- comments
 export const getCommentsFromPostAction = (comments) => {
     return {
         type: GET_COMMENTS_FROM_POST,
@@ -110,12 +112,19 @@ export const editCommentAction = (comment) => {
     }
 }
 
+export const deleteCommentAction = (deletedComment) => {
+    return {
+        type: DELETE_COMMENT,
+        payload: deletedComment,
+    }
+}
+
 
 /**
  * ############### Thunks ###############
  */
 
-// -- categories
+// --------- categories
 export const fetchCategories = () => dispatch => {
     // console.log('fetching!');
     API.getAllCategories()
@@ -132,7 +141,7 @@ export const fetchPostsByCategory = (category) => dispatch => {
         })
 }
 
-// -- posts
+// --------- posts
 export const fetchAllPosts = () => dispatch => {
     // console.log('fetching!');
     API.getAllPosts()
@@ -170,7 +179,7 @@ export const deletePostThunk = (postID) => dispatch => {
 }
 
 
-//comments
+//--------- comments
 export const fetchCommentsFromPostThunk = (postID) => dispatch => {
     API.getCommentsFromPost(postID)
         .then( comments => dispatch(getCommentsFromPostAction(comments)))
@@ -190,4 +199,9 @@ export const voteOnCommentThunk = (commentId, option) => dispatch => {
 export const editCommentThunk = (commentId, timestamp, body) => dispatch => {
     API.editComment(commentId, timestamp, body)
         .then( comment => dispatch(editCommentAction(comment)))
+}
+
+export const deleteCommentThunk = (commentID) => dispatch => {
+    API.deleteComment(commentID)
+        .then( deletedComment => dispatch(deleteCommentAction(deletedComment)))
 }

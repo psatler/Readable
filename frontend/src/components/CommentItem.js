@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 //redux
 import {connect} from 'react-redux';
-import { voteOnCommentThunk, editCommentThunk } from '../actions'
+import { voteOnCommentThunk, editCommentThunk, deleteCommentThunk } from '../actions'
 
 class CommentItem extends Component {
 
@@ -14,8 +14,8 @@ class CommentItem extends Component {
         body: this.props.body,
     }
 
+    //methods to edit comment
     handleChange = (e, { name, value }) => this.setState({ [name]: value })
-    
     handleSubmit = () => {
         const commentId = this.props.id;
         const newTimestamp = Date.now();
@@ -34,6 +34,7 @@ class CommentItem extends Component {
     render() {
         const {id, author, timestamp, body, voteScore} = this.props;
 
+        //show textarea depending on the comment is being edited or not
         const editComment = this.state.editing ? (<Form onSubmit={this.handleSubmit}>
                 <Form.TextArea required  name='body' value={this.state.body} 
                    onChange={this.handleChange} />
@@ -55,11 +56,8 @@ class CommentItem extends Component {
                     </Comment.Metadata>
                 </Comment.Author>
                 
-                {/* <Comment.Metadata>{` ${showTime(props.timestamp)} `} </Comment.Metadata> */}
-                {/* <Comment.Text>
-                {body}
-                </Comment.Text> */}
-
+                
+                {/*show textarea depending on the comment is being edited or not*/}
                 {editComment}
 
 
@@ -68,14 +66,23 @@ class CommentItem extends Component {
                 <Comment.Actions>
                 {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
                 <Comment.Action>
-                    <Icon name='arrow up' onClick={()=> {this.props.voteOnCommentThunk(id,"upVote")}} />
+                    <Icon name='arrow up' 
+                        onClick={()=> {this.props.voteOnCommentThunk(id,"upVote")}} 
+                    />
                 </Comment.Action>
                 <Comment.Action>{voteScore}</Comment.Action>
                 <Comment.Action>
-                    <Icon name='arrow down' onClick={()=> {this.props.voteOnCommentThunk(id,"downVote")}} />
+                    <Icon name='arrow down' 
+                        onClick={()=> {this.props.voteOnCommentThunk(id,"downVote")}} 
+                    />
                 </Comment.Action>
                 <Comment.Action onClick={() => {this.setState( {editing: true} )}}>Edit</Comment.Action>
-                <Comment.Action>Delete</Comment.Action>
+                
+                <Comment.Action 
+                    onClick={ () => {this.props.deleteCommentThunk(id)}}
+                >
+                    Delete
+                </Comment.Action>
                 
                 </Comment.Actions>
             </Comment.Content>
@@ -97,17 +104,15 @@ CommentItem.propTypes = {
     voteScore: PropTypes.number.isRequired,
     voteOnCommentThunk: PropTypes.func.isRequired,
     editCommentThunk: PropTypes.func.isRequired,
+    deleteCommentThunk: PropTypes.func.isRequired,
 }
 
-// PostVote.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     voteScore: PropTypes.number.isRequired,
-// }
 
 const mapDispatchToPros = (dispatch) => {
     return {
         editCommentThunk: (commentId, timestamp, body) => dispatch(editCommentThunk(commentId, timestamp, body)),
         voteOnCommentThunk: (commentId, option) => dispatch(voteOnCommentThunk(commentId, option)),
+        deleteCommentThunk: (commentId) => dispatch(deleteCommentThunk(commentId)),
     }
 }
 
