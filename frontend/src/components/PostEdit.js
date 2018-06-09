@@ -48,9 +48,17 @@ class PostEdit extends Component {
     handleSubmit = () => {
         //update post
         const postID = this.props.match.params.id;
+        const category = this.props.match.params.category;
         const {title, body} = this.state;
+
+        console.log(this.props.match)
     
         this.props.editPostThunk(postID, title, body);
+
+        //show message before redirecting - set up a timeout to message appear
+
+        this.props.history.push(`/${category}/${postID}`);
+
     }
 
     handleChange = (e, { name, value }) => this.setState({ [name]: value })

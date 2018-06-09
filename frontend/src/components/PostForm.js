@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
 import uuidv4 from 'uuid/v4'
+import { Redirect } from 'react-router-dom'
 
 //redux
 import { connect } from 'react-redux'
@@ -53,6 +54,10 @@ class PostForm extends Component {
         })
 
         //add here a pop up or something saying the post was added! and then clear the form
+        //set up a timeout to show message
+
+        // <Redirect to='/' />
+        this.props.history.push('/')
 
     }   
 

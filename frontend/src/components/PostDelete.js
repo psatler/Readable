@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Label } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom' //using this HOC to be able to redirect back to home after deletion
 
 //redux
 import {connect} from 'react-redux';
@@ -15,10 +16,9 @@ class PostDelete extends Component {
         this.props.deletePostThunk(postId);
 
         //show message telling post was deleted
-        
-        // const id = this.props.match.params.id;
-        // console.log(this.props.match)
-        // this.props.history.push('/');
+
+        this.props.history.push('/');
+        // console.log('pushed!')
     }
     
     render(){
@@ -44,4 +44,5 @@ const mapDispatchToPros = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToPros)(PostDelete);
+//wrapping the component with withRouter to be able to use history.push
+export default connect(null, mapDispatchToPros)(withRouter(PostDelete));
