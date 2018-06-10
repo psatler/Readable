@@ -16,6 +16,9 @@ import MenuApp from './Menu'
 
 class App extends Component {
 
+    componentDidMount(){
+      console.log('testdasd')
+    }
 
   render() {
 

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 //redux
 import { connect } from 'react-redux'
-import { fetchCategories } from '../actions'
+import { fetchCategories, changeMenuActiveItem } from '../actions'
 
 class MenuApp extends Component {
 
@@ -22,8 +22,14 @@ class MenuApp extends Component {
         return (
             categories.map( cat => (
                     <span key={cat.name}>
-                    <Link to={`/${cat.name}`}>
-                        <Menu.Item name={`/${cat.name}`} /> 
+                    <Link 
+                        to={`/${cat.name}`} 
+                        onClick={() => this.props.changeMenuActiveItem(`${cat.name}`)} //calls action to change active item on menu reducer
+                    >
+                        <Menu.Item 
+                            name={`/${cat.name}`}
+                            active={this.props.activeItem === `${cat.name}`} 
+                        /> 
                     </Link>
                     </span>
                 )
@@ -36,8 +42,14 @@ class MenuApp extends Component {
 
         return (
         <Menu pointing>
-            <Link to="/" >
-            <Menu.Item name='All' />
+            <Link 
+                to="/" 
+                onClick={() => this.props.changeMenuActiveItem('All')}    
+            >
+            <Menu.Item 
+                name='All' 
+                active={this.props.activeItem === 'All'} 
+            />
             {/* <Menu.Item name='All' active={activeItem === 'all'} onClick={this.handleItemClick} /> */}
             </Link>
 
@@ -51,12 +63,14 @@ class MenuApp extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchCategories: () => dispatch(fetchCategories()),
+        changeMenuActiveItem: (option) => dispatch(changeMenuActiveItem(option)),
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoryReducer.categories
+        categories: state.categoryReducer.categories,
+        activeItem: state.menuReducer.activeItem,
     }
 }
 

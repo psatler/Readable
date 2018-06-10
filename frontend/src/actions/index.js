@@ -22,9 +22,19 @@ export const FETCH_END = 'FETCH_END'
 export const FETCH_BEGIN_COMMENTS = 'FETCH_BEGIN_COMMENTS'
 export const FETCH_END_COMMENTS = 'FETCH_END_COMMENTS'
 
+export const CHANGE_ACTIVE_ITEM = 'CHANGE_ACTIVE_ITEM'
+
 /**
  * ############### action creators ###############
  */
+
+export const changeMenuActiveItem = (option) => {
+    return {
+        type: CHANGE_ACTIVE_ITEM,
+        payload: option,
+    }
+}
+
 
 //action for the loader
 //inspired by https://daveceddia.com/where-fetch-data-redux/

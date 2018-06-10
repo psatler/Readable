@@ -20,8 +20,25 @@ import {FETCH_ALL_POSTS,
         FETCH_END,
         FETCH_BEGIN_COMMENTS,
         FETCH_END_COMMENTS,
+        CHANGE_ACTIVE_ITEM,
         } from '../actions'
 
+
+const menuInitialState = {
+    activeItem: 'All',
+}
+const menuReducer = (state = menuInitialState, action) => {
+    switch(action.type){
+        case CHANGE_ACTIVE_ITEM:
+            return {
+                ...state,
+                activeItem: action.payload, //
+            }
+
+        default:
+            return state;
+    }
+}
 
 
 const initialState = {
@@ -276,6 +293,7 @@ const categoryReducer = (state = categoryReducer_InitialState, action) => {
 
 
 export default combineReducers({
+    menuReducer,
     categoryReducer,
     postReducer,
     commentReducer,
