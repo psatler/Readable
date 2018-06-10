@@ -51,6 +51,13 @@ class PostsByCategory extends Component {
 
     render() {
         // console.log('posts', this.props.postsByCategory)
+        const category = this.props.match.params.category;
+        const { loading } = this.props;
+
+        if(loading){
+            return <h1>Loading posts from {category} category</h1>
+        }
+
         return (
             <div>
                 Sort By: <br/>
@@ -90,6 +97,7 @@ const mapStateToProps = (state) => {
     return {
         // postsByCategory: state.categoryReducer.postsByCategory,
         postsByCategory: state.postReducer.posts,
+        loading: state.postReducer.loading,
     }
 }
 

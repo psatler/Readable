@@ -63,7 +63,11 @@ class PostForm extends Component {
 
     render() {
         const {title, body, author, category} = this.state;
-        const {categories} = this.props; //categories fetched from the server
+        const {categories, loading} = this.props; //categories fetched from the server
+
+        if(loading){
+            return <h1>Loading form</h1>
+        }
         
         //the code below is intended to organize the data as the Dropdown component of Semantic-UI requires
         const options = []
@@ -105,7 +109,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        categories: state.categoryReducer.categories
+        categories: state.categoryReducer.categories,
+        loading: state.postReducer.loading,
     }
 }
 

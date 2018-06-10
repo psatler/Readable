@@ -39,6 +39,12 @@ class Posts extends Component {
 
     render() {
         console.log('posts', this.props.posts)
+        const { loading } = this.props;
+
+        if(loading){
+            return <h1>Loading...</h1>
+        }
+
         return (
             <div>
                 Sort By: <br/>
@@ -73,7 +79,8 @@ Posts.propTypes = {
 }
 
 const mapStateToPros = (state) => ({
-    posts: state.postReducer.posts
+    posts: state.postReducer.posts,
+    loading: state.postReducer.loading
   })
   
 const mapDispatchToProps = (dispatch) => {

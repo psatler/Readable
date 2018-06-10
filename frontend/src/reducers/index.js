@@ -16,6 +16,8 @@ import {FETCH_ALL_POSTS,
         DELETE_POST,
         DELETE_COMMENT,
         SORT_ITENS,
+        FETCH_BEGIN,
+        FETCH_END,
         } from '../actions'
 
 
@@ -25,10 +27,23 @@ const initialState = {
     // post: [],
     post: {},
     // order: 'byPoints',
+    loading: false,
 }
 
 const postReducer = (state = initialState, action) => {
     switch(action.type){
+        case FETCH_BEGIN: // Mark the state as "loading" so we can show a spinner or something
+            return {
+                ...state,
+                loading: true,
+            }
+        
+        case FETCH_END: // Mark the state as "loading" so we can show a spinner or something
+            return {
+                ...state,
+                loading: false,
+            }
+
         case SORT_ITENS:
             
             const option = action.payload;
@@ -109,7 +124,7 @@ const postReducer = (state = initialState, action) => {
 
         case DELETE_POST:
             const deletedPostId = action.payload.id;
-            console.log('deletedPost', action.payload)
+            // console.log('deletedPost', action.payload)
             const newArr = state.posts.filter( post => post.id !== deletedPostId )
             return {
                 ...state,
@@ -158,10 +173,23 @@ const postReducer = (state = initialState, action) => {
 const commentReducer_InitialState = {
     comments: [],
     comment: {},
+    loading: false,
 }
 
 const commentReducer = (state = commentReducer_InitialState, action) => {
     switch(action.type){
+        // case FETCH_BEGIN: // Mark the state as "loading" so we can show a spinner or something
+        //     return {
+        //         ...state,
+        //         loading: true,
+        //     }
+        
+        // case FETCH_END: // Mark the state as "loading" so we can show a spinner or something
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //     }
+
         case GET_COMMENTS_FROM_POST:
             return {
                 ...state,

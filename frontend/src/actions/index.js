@@ -17,10 +17,27 @@ export const EDIT_COMMENT = 'EDIT_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const SORT_ITENS = 'SORT_ITENS';
 
+export const FETCH_BEGIN = 'FETCH_BEGIN'
+export const FETCH_END = 'FETCH_END'
 
 /**
  * ############### action creators ###############
  */
+
+//action for the loader
+//inspired by https://daveceddia.com/where-fetch-data-redux/
+//then adding dispatch(fetchBegin()); before fetch calls at thunks
+export const fetchBegin = () => {
+    return {
+        type: FETCH_BEGIN,
+    }
+}
+
+export const fetchEnd = () => {
+    return {
+        type: FETCH_END,
+    }
+}
 
 export const sortItensAction = (option) => {
     return {
@@ -135,25 +152,33 @@ export const deleteCommentAction = (deletedComment) => {
 // --------- categories
 export const fetchCategories = () => dispatch => {
     // console.log('fetching!');
+    dispatch(fetchBegin());
     API.getAllCategories()
         .then( categories => {
             // console.log('fetching!', categories);
             dispatch(getCategories(categories))
+            dispatch(fetchEnd());
         })
 }
 
 export const fetchPostsByCategory = (category) => dispatch => {
+    dispatch(fetchBegin());
     API.getPostsByCategory(category)
         .then( posts => {
-            dispatch(getPostsByCategoryAction(posts))
+            dispatch(getPostsByCategoryAction(posts));
+            dispatch(fetchEnd());
         })
 }
 
 // --------- posts
 export const fetchAllPosts = () => dispatch => {
     // console.log('fetching!');
+    dispatch(fetchBegin());
     API.getAllPosts()
-        .then( posts => dispatch(getPosts(posts)))
+        .then( posts => {
+            dispatch(getPosts(posts))
+            dispatch(fetchEnd());
+        })
 }
 
 export const addNewPost = (newPost) => dispatch => {
@@ -164,10 +189,12 @@ export const addNewPost = (newPost) => dispatch => {
 }
 
 export const fetchPostDetail = (postID) => dispatch => {
+    dispatch(fetchBegin());
     API.getPostDetail(postID)
         .then(post => {
             // console.log('postInsideThunk', post)
             dispatch(getPostDetailAction(post))
+            dispatch(fetchEnd());
         } )
 }
 
@@ -177,20 +204,32 @@ export const voteOnPostThunk = (postID, option) => dispatch => {
 }
 
 export const editPostThunk = (postID, title, body) => dispatch => {
+    dispatch(fetchBegin());
     API.editPost(postID,title,body)
-        .then( post => dispatch(editPostAction(post)))
+        .then( post => {
+            dispatch(editPostAction(post))
+            dispatch(fetchEnd());
+        })
 }
 
 export const deletePostThunk = (postID) => dispatch => {
+    dispatch(fetchBegin());
     API.deletePost(postID)
-        .then( deletedPost => dispatch(deletePostAction(deletedPost)))
+        .then( deletedPost => {
+            dispatch(deletePostAction(deletedPost))
+            dispatch(fetchEnd());
+        })
 }
 
 
 //--------- comments
 export const fetchCommentsFromPostThunk = (postID) => dispatch => {
+    // dispatch(fetchBegin());
     API.getCommentsFromPost(postID)
-        .then( comments => dispatch(getCommentsFromPostAction(comments)))
+        .then( comments => {
+            dispatch(getCommentsFromPostAction(comments))
+            // dispatch(fetchEnd());
+        })
 }
 
 

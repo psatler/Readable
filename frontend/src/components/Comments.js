@@ -24,9 +24,21 @@ class Comments extends Component {
     
 
     render() {
-        const {comments, post} = this.props;
+        const {comments, post, postID, loading} = this.props;
         // console.log('comments',comments)
-        const { postID } = this.props;
+        // const { postID } = this.props;
+
+        // if(loading){
+        //     return (
+        //         <span>
+        //             <h3>{post.commentCount} Comments </h3>
+
+        //             <CommentForm parentId={postID} />
+
+        //             <h1>Loading comments</h1>
+        //         </span>
+        //     )
+        // }
 
         return (        
             <span>
@@ -47,8 +59,6 @@ class Comments extends Component {
                     />
                 ))}
                 </Comment.Group >
-                
-                
             </span>     
             
         )
@@ -69,6 +79,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => ({
     comments: state.commentReducer.comments,
     post: state.postReducer.post,
+    loading: state.commentReducer.loading,
 
 })
 

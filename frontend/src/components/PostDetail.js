@@ -59,12 +59,13 @@ class PostDetail extends Component {
     }
 
     render() {
-        const { post } = this.props
+        const { post, loading } = this.props
         const id = this.props.match.params.id;
         const category = this.props.match.params.category;
 
-        // console.log('Vendo o post', post);
-        // console.log('Vendo o post', Object.keys(post));
+        if(loading){
+            return <h1>Loading post details</h1>
+        }
 
         //https://tylermcginnis.com/react-router-programmatically-navigate/
         if(Object.keys(post).length === 0 || post.error){
@@ -93,7 +94,8 @@ PostDetail.propTypes = {
 }
 
 const mapStateToPros = (state) => ({
-    post: state.postReducer.post
+    post: state.postReducer.post,
+    loading: state.postReducer.loading,
 })
 
 const mapDispatchToProps = (dispatch) => {

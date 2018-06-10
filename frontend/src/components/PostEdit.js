@@ -65,6 +65,11 @@ class PostEdit extends Component {
 
     render() {
         const {title, body, author, category} = this.state;
+        const { loading } = this.props;
+
+        if(loading){
+            return <h1>Loading post info to editing</h1>
+        }
 
         return (
             <div>
@@ -89,7 +94,8 @@ class PostEdit extends Component {
 }
 
 const mapStateToPros = (state) => ({
-    post: state.postReducer.post
+    post: state.postReducer.post,
+    loading: state.postReducer.loading,
 })
 
 const mapDispatchToProps = (dispatch) => {
