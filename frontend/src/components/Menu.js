@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 //redux
@@ -54,6 +54,16 @@ class MenuApp extends Component {
             </Link>
 
             {this.displayMenu()}
+
+
+            <Menu.Item className='right' >
+                <a target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/psatler/myReads_React"
+                >
+                    <Icon name='code' />
+                </a>
+            </Menu.Item>
            
         </Menu>
         )
