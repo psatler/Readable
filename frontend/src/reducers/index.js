@@ -18,6 +18,8 @@ import {FETCH_ALL_POSTS,
         SORT_ITENS,
         FETCH_BEGIN,
         FETCH_END,
+        FETCH_BEGIN_COMMENTS,
+        FETCH_END_COMMENTS,
         } from '../actions'
 
 
@@ -178,17 +180,17 @@ const commentReducer_InitialState = {
 
 const commentReducer = (state = commentReducer_InitialState, action) => {
     switch(action.type){
-        // case FETCH_BEGIN: // Mark the state as "loading" so we can show a spinner or something
-        //     return {
-        //         ...state,
-        //         loading: true,
-        //     }
+        case FETCH_BEGIN_COMMENTS: // Mark the state as "loading" so we can show a spinner or something
+            return {
+                ...state,
+                loading: true,
+            }
         
-        // case FETCH_END: // Mark the state as "loading" so we can show a spinner or something
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //     }
+        case FETCH_END_COMMENTS: // Mark the state as "loading" so we can show a spinner or something
+            return {
+                ...state,
+                loading: false,
+            }
 
         case GET_COMMENTS_FROM_POST:
             return {

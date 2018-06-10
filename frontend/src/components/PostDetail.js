@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form } from 'semantic-ui-react'
+import { Form, Dimmer, Loader } from 'semantic-ui-react'
 import { PostItem } from './PostItem'
 // import { Redirect } from 'react-router-dom'
 import NoMatch from './NoMatch'
@@ -64,7 +64,12 @@ class PostDetail extends Component {
         const category = this.props.match.params.category;
 
         if(loading){
-            return <h1>Loading post details</h1>
+            // return <h1>Loading post details</h1>
+            return (
+                <Dimmer active inverted>
+                    <Loader size="large">Loading post details</Loader>
+                </Dimmer>
+            )
         }
 
         //https://tylermcginnis.com/react-router-programmatically-navigate/

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Comment, Form, Icon, Label } from 'semantic-ui-react'
+import { Button, Comment, Form, Icon, Label, Dimmer, Loader } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 
 import CommentForm from './CommentForm'
@@ -28,17 +28,22 @@ class Comments extends Component {
         // console.log('comments',comments)
         // const { postID } = this.props;
 
-        // if(loading){
-        //     return (
-        //         <span>
-        //             <h3>{post.commentCount} Comments </h3>
+        if(loading){
+            return (
+                <span>
+                    <h3>{post.commentCount} Comments </h3>
 
-        //             <CommentForm parentId={postID} />
+                    <CommentForm parentId={postID} />
 
-        //             <h1>Loading comments</h1>
-        //         </span>
-        //     )
-        // }
+                    {/* <h4>Loading comments</h4> */}
+                    
+                    <Dimmer active inverted>
+                        <Loader size="small">Loading comments</Loader>
+                    </Dimmer>
+            
+                </span>
+            )
+        }
 
         return (        
             <span>

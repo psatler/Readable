@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { Item, Button}from 'semantic-ui-react'
+import { Item, Button, Dimmer, Loader}from 'semantic-ui-react'
 // import { showTime } from '../utils/helpers'
 import { PostItem } from './PostItem'
 
@@ -42,7 +42,12 @@ class Posts extends Component {
         const { loading } = this.props;
 
         if(loading){
-            return <h1>Loading...</h1>
+            // return <h1>Loading...</h1>
+            return (
+                <Dimmer active inverted>
+                    <Loader size="large">Loading posts</Loader>
+                </Dimmer>
+            )
         }
 
         return (

@@ -19,6 +19,8 @@ export const SORT_ITENS = 'SORT_ITENS';
 
 export const FETCH_BEGIN = 'FETCH_BEGIN'
 export const FETCH_END = 'FETCH_END'
+export const FETCH_BEGIN_COMMENTS = 'FETCH_BEGIN_COMMENTS'
+export const FETCH_END_COMMENTS = 'FETCH_END_COMMENTS'
 
 /**
  * ############### action creators ###############
@@ -36,6 +38,18 @@ export const fetchBegin = () => {
 export const fetchEnd = () => {
     return {
         type: FETCH_END,
+    }
+}
+
+export const fetchBeginComments = () => {
+    return {
+        type: FETCH_BEGIN_COMMENTS,
+    }
+}
+
+export const fetchEndComments = () => {
+    return {
+        type: FETCH_END_COMMENTS,
     }
 }
 
@@ -224,18 +238,22 @@ export const deletePostThunk = (postID) => dispatch => {
 
 //--------- comments
 export const fetchCommentsFromPostThunk = (postID) => dispatch => {
-    // dispatch(fetchBegin());
+    dispatch(fetchBeginComments());
     API.getCommentsFromPost(postID)
         .then( comments => {
             dispatch(getCommentsFromPostAction(comments))
-            // dispatch(fetchEnd());
+            dispatch(fetchEndComments());
         })
 }
 
 
 export const addCommentThunk = (newComment) => dispatch => {
+    dispatch(fetchBeginComments());
     API.addComment(newComment)
-        .then( comment => dispatch(addCommentAction(comment)))
+        .then( comment => {
+            dispatch(addCommentAction(comment))
+            dispatch(fetchEndComments());
+        })
 }
 
 export const voteOnCommentThunk = (commentId, option) => dispatch => {
@@ -249,6 +267,10 @@ export const editCommentThunk = (commentId, timestamp, body) => dispatch => {
 }
 
 export const deleteCommentThunk = (commentID) => dispatch => {
+    dispatch(fetchBeginComments());
     API.deleteComment(commentID)
-        .then( deletedComment => dispatch(deleteCommentAction(deletedComment)))
+        .then( deletedComment => {
+            dispatch(deleteCommentAction(deletedComment));
+            dispatch(fetchEndComments());
+        })
 }
