@@ -25,7 +25,9 @@ class PostDelete extends Component {
 
         return (
 
-            <Label as='a' size='mini' basic color='black' onClick={this.onDelete}> 
+            <Label as='a' size='small' basic color='black' onClick={this.onDelete}
+                className="postDelete"
+            > 
                 Delete 
             </Label>
         )

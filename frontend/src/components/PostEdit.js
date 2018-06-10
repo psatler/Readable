@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Dimmer, Loader } from 'semantic-ui-react'
 
 //redux
 import { connect } from 'react-redux';
@@ -68,7 +68,12 @@ class PostEdit extends Component {
         const { loading } = this.props;
 
         if(loading){
-            return <h1>Loading post info to editing</h1>
+            // return <h1>Loading post info to editing</h1>
+            return (
+                <Dimmer active inverted>
+                    <Loader size="large">Loading post for editing</Loader>
+                </Dimmer>
+            )
         }
 
         return (
@@ -84,7 +89,7 @@ class PostEdit extends Component {
                     onChange={this.handleChange} />
                     <Form.Input disabled name='category' value={category} />
                     <Form.Input disabled name='author' value={author} />
-                    <Form.Button content='Submit changes' />
+                    <Form.Button basic color="black" content='Submit changes' />
                 </Form>
                 }
 

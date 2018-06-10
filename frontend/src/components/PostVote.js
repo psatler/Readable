@@ -13,13 +13,17 @@ class PostVote extends Component {
         // console.log('postVote', id)
         return (
             <span>
-            <a>
-            <Icon name='arrow up' onClick={()=> {this.props.voteOnPostThunk(id,"upVote")}} />
-            </a>   
+            
+            <Icon name='arrow up' 
+                className="postVoteUp"
+                onClick={()=> {this.props.voteOnPostThunk(id,"upVote")}} />
+               
                     <Label circular>{this.props.voteScore}</Label>
-            <a>
-            <Icon name='arrow down' onClick={()=> {this.props.voteOnPostThunk(id,"downVote")}} />
-            </a>
+            
+            <Icon name='arrow down' 
+                className="postVoteDown"
+                onClick={()=> {this.props.voteOnPostThunk(id,"downVote")}} />
+            
             </span>
         )
     }

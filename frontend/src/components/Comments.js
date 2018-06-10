@@ -48,7 +48,7 @@ class Comments extends Component {
         return (        
             <span>
                 {/* <h3>{comments.length} Comments </h3> */}
-                <h3>{post.commentCount} Comments </h3>
+                <h3 className="commentsCounter">{post.commentCount} Comments </h3>
 
                 <CommentForm parentId={postID} />
 

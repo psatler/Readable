@@ -41,7 +41,7 @@ class MenuApp extends Component {
         const {categories} = this.props; //categories fetched from the server
 
         return (
-        <Menu pointing>
+        <Menu inverted stackable>
             <Link 
                 to="/" 
                 onClick={() => this.props.changeMenuActiveItem('All')}    

@@ -82,18 +82,24 @@ class PostForm extends Component {
         // console.log('options', options)
 
         return (
+            <div>
+
+            
+            <h1>Create a new post:</h1>    
+
             <Form onSubmit={this.handleSubmit}>
                 <Form.Input required placeholder='Insert the post title' name='title' value={title} 
                     onChange={this.handleChange} />
                 <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
                    onChange={this.handleChange} />
-                <Form.Dropdown fluid selection placeholder='Select Category' options={options} 
+                <Form.Dropdown fluid selection placeholder='Select a category' options={options} 
                     name='category' value={category} onChange={this.handleChange}
                     />
                 <Form.Input required placeholder='Author name' name='author' value={author} 
                     onChange={this.handleChange} />
-                <Form.Button content='Submit' />
+                <Form.Button basic color="black" content='Submit Post' />
             </Form>
+            </div>
         )
     }
 

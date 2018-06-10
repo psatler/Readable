@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { Item, Button }from 'semantic-ui-react'
+import { Item, Button, Dimmer, Loader }from 'semantic-ui-react'
 import { PostItem } from './PostItem'
 
 /**
@@ -31,6 +31,12 @@ class PostsByCategory extends Component {
     
     displayPosts = () => {
         const postsByCategory = this.props.postsByCategory;
+        if(postsByCategory.length === 0){
+            return (
+                <h5>There is no posts for this category</h5>
+            )
+        }
+
         return (
             postsByCategory.map( post => ( 
                 // <ItemPost key={post.id} props={post} />
@@ -55,7 +61,12 @@ class PostsByCategory extends Component {
         const { loading } = this.props;
 
         if(loading){
-            return <h1>Loading posts from {category} category</h1>
+            // return <h1>Loading posts from {category} category</h1>
+            return (
+                <Dimmer active inverted>
+                    <Loader size="large">Loading posts from {category} category</Loader>
+                </Dimmer>
+            )
         }
 
         return (

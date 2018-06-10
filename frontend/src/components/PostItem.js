@@ -9,7 +9,7 @@ import PostDelete from './PostDelete'
 
 // export const PostItem = ({props}, isDetail) => {
 export const PostItem = (props) => {
-    const titleWithLink = props.isDetail ? (<div>{props.title}</div>) : //if it is in the post details page, do not exhibit title as a link
+    const titleWithLink = props.isDetail ? (<div className="postTitle">{props.title}</div>) : //if it is in the post details page, do not exhibit title as a link
         (<Link to={`/${props.category}/${props.id}`}>
             {props.title}
         </Link>);
@@ -31,22 +31,26 @@ export const PostItem = (props) => {
                 </Item.Meta>
                 
                 {/*If body is not passed as prop, it won't be displayed in the screen */}
-                <Item.Description> {props.body} </Item.Description>
+                {props.isDetail && <Item.Description className="postBody"> {props.body} </Item.Description>}
+                
 
                 <Item.Extra>
                     <PostVote id={props.id} voteScore={props.voteScore} />
                     
 
                    {!props.isDetail && 
-                        <Label size='mini' basic color='black' >{props.commentCount} comments</Label>  
+                        <Label size='small' basic color='black' >{props.commentCount} comments</Label>  
                    }
                  
                 {/* <Label size='mini' basic color='black' >{props.commentCount} comments</Label>   */}
                    
 
                     <Link to={`/${props.category}/${props.id}/edit`}>
-                        <Label size='mini' basic color='black'> Edit </Label>
+                        <Label size='small' basic color='black'
+                            className="postEdit"
+                        > Edit </Label>
                     </Link>
+                    
 
                     <PostDelete id={props.id} />
 
