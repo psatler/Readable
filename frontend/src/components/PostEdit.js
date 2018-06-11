@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Dimmer, Loader } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
 //redux
 import { connect } from 'react-redux';
@@ -68,7 +69,6 @@ class PostEdit extends Component {
         const { loading } = this.props;
 
         if(loading){
-            // return <h1>Loading post info to editing</h1>
             return (
                 <Dimmer active inverted>
                     <Loader size="large">Loading post for editing</Loader>
@@ -108,6 +108,13 @@ const mapDispatchToProps = (dispatch) => {
         fetchPostDetail: (id) => dispatch(fetchPostDetail(id)),
         editPostThunk: (postID, title, body) => dispatch(editPostThunk(postID, title, body)),
     }
+}
+
+PostEdit.propTypes = {
+    fetchPostDetail: PropTypes.func.isRequired,
+    editPostThunk: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
+    loading: PropTypes.bool.isRequired,
 }
 
 export default connect(mapStateToPros, mapDispatchToProps)(PostEdit);

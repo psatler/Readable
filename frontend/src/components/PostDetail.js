@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Dimmer, Loader } from 'semantic-ui-react'
 import { PostItem } from './PostItem'
-// import { Redirect } from 'react-router-dom'
 import NoMatch from './NoMatch'
 
 import Comments from './Comments'
@@ -18,18 +17,11 @@ class PostDetail extends Component {
     componentDidMount(){
         const id = this.props.match.params.id;
         this.props.fetchPostDetail(id);
-        // console.log('id',this.props.match);
-
-        // this.props.fetchCommentsFromPostThunk(id);
-
     }
 
 
     displayPost = () => {
         const post = this.props.post;
-        // console.log('POsts', post)
-        // console.log('postdisplayPost', post)
-        // console.log('Vendo o post', Object.keys(post));
 
         return (
             // post.hasOwnProperty('id') && //avoiding errors complaints about constructor undefined inside PostItem
@@ -46,7 +38,6 @@ class PostDetail extends Component {
                     body={post.body}
                     isDetail={true}
             />
-            // <span> tese</span>
         )
     }
 
@@ -60,11 +51,8 @@ class PostDetail extends Component {
 
     render() {
         const { post, loading } = this.props
-        // const id = this.props.match.params.id;
-        // const category = this.props.match.params.category;
 
         if(loading){
-            // return <h1>Loading post details</h1>
             return (
                 <Dimmer active inverted>
                     <Loader size="large">Loading post details</Loader>
@@ -73,6 +61,7 @@ class PostDetail extends Component {
         }
 
         //https://tylermcginnis.com/react-router-programmatically-navigate/
+        //in case the post was deleted, redirects to 404 page
         if(Object.keys(post).length === 0 || post.error){
             // return <Redirect from={`/${category}/${id}`} to="/404" />
             return <NoMatch />
@@ -83,8 +72,6 @@ class PostDetail extends Component {
             <div>
                 {this.displayPost()}
 
-                {/* <h3>Comments</h3>     */}
-
                 {this.displayComments()}
 
             </div>
@@ -92,11 +79,6 @@ class PostDetail extends Component {
     }
 }
 
-
-PostDetail.propTypes = {
-    post: PropTypes.object.isRequired,
-    fetchPostDetail: PropTypes.func.isRequired,
-}
 
 const mapStateToPros = (state) => ({
     post: state.postReducer.post,
@@ -106,10 +88,13 @@ const mapStateToPros = (state) => ({
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchPostDetail: (id) => dispatch(fetchPostDetail(id)),
-        // fetchCommentsFromPostThunk: (id) => dispatch(fetchCommentsFromPostThunk(id))
     }
 }
 
-
+PostDetail.propTypes = {
+    post: PropTypes.object.isRequired,
+    fetchPostDetail: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+}
 
 export default connect(mapStateToPros, mapDispatchToProps)(PostDetail);

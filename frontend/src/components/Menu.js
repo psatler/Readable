@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
+
 
 //redux
 import { connect } from 'react-redux'
@@ -13,7 +15,6 @@ class MenuApp extends Component {
     }
 
     // state = { activeItem: 'all' }
-
     // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     displayMenu = () => {
@@ -38,7 +39,6 @@ class MenuApp extends Component {
     }
 
     render() {
-        // const {categories} = this.props; //categories fetched from the server
 
         return (
         <Menu inverted stackable>
@@ -46,15 +46,13 @@ class MenuApp extends Component {
                 to="/" 
                 onClick={() => this.props.changeMenuActiveItem('All')}    
             >
-            <Menu.Item 
-                name='All' 
-                active={this.props.activeItem === 'All'} 
-            />
-            {/* <Menu.Item name='All' active={activeItem === 'all'} onClick={this.handleItemClick} /> */}
+                <Menu.Item 
+                    name='All' 
+                    active={this.props.activeItem === 'All'} 
+                />
             </Link>
 
             {this.displayMenu()}
-
 
             <Menu.Item className='right' >
                 <a target="_blank"
@@ -83,5 +81,13 @@ const mapStateToProps = (state) => {
         activeItem: state.menuReducer.activeItem,
     }
 }
+
+MenuApp.propTypes = {
+    fetchCategories: PropTypes.func.isRequired,
+    changeMenuActiveItem: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
+    activeItem: PropTypes.string.isRequired,
+}
+
 
 export default connect(mapStateToProps,mapDispatchToProps)(MenuApp);

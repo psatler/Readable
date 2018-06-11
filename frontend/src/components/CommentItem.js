@@ -64,37 +64,34 @@ class CommentItem extends Component {
 
                 
                 <Comment.Actions>
-                {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
-                <Comment.Action>
-                    <Icon name='arrow up' 
-                        className="commentVoteUp"
-                        onClick={()=> {this.props.voteOnCommentThunk(id,"upVote")}} 
-                    />
-                </Comment.Action>
-                <Comment.Action>{voteScore}</Comment.Action>
-                <Comment.Action>
-                    <Icon name='arrow down' 
-                        className="commentVoteDown"
-                        onClick={()=> {this.props.voteOnCommentThunk(id,"downVote")}} 
-                    />
-                </Comment.Action>
-                <Comment.Action 
-                    className="commentEdit"
-                    onClick={() => {this.setState( {editing: true} )}}>Edit</Comment.Action>
-                
-                <Comment.Action 
-                    className="commentDelete"
-                    onClick={ () => {this.props.deleteCommentThunk(id)}}
-                >
-                    Delete
-                </Comment.Action>
+                    {/* <Comment.Action>{` ${showTime(props.timestamp)} `}</Comment.Action> */}
+                    <Comment.Action>
+                        <Icon name='arrow up' 
+                            className="commentVoteUp"
+                            onClick={()=> {this.props.voteOnCommentThunk(id,"upVote")}} 
+                        />
+                    </Comment.Action>
+                    <Comment.Action>{voteScore}</Comment.Action>
+                    <Comment.Action>
+                        <Icon name='arrow down' 
+                            className="commentVoteDown"
+                            onClick={()=> {this.props.voteOnCommentThunk(id,"downVote")}} 
+                        />
+                    </Comment.Action>
+                    <Comment.Action 
+                        className="commentEdit"
+                        onClick={() => {this.setState( {editing: true} )}}>Edit</Comment.Action>
+                    
+                    <Comment.Action 
+                        className="commentDelete"
+                        onClick={ () => {this.props.deleteCommentThunk(id)}}
+                    >
+                        Delete
+                    </Comment.Action>
                 
                 </Comment.Actions>
             </Comment.Content>
             </Comment>
-
-
-            
 
         )
     }

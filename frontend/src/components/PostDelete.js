@@ -36,15 +36,15 @@ class PostDelete extends Component {
 }
 
 PostDelete.propTypes = {
-    id: PropTypes.string.isRequired,
-    deletePostThunk: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired, //from parent component
+    deletePostThunk: PropTypes.func.isRequired, //from dispatch
 }
 
-const mapDispatchToPros = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         deletePostThunk: (id) => dispatch(deletePostThunk(id)),
     }
 }
 
 //wrapping the component with withRouter to be able to use history.push
-export default connect(null, mapDispatchToPros)(withRouter(PostDelete));
+export default connect(null, mapDispatchToProps)(withRouter(PostDelete));

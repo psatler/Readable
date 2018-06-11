@@ -15,27 +15,19 @@ class Comments extends Component {
     
 
     componentDidMount(){
-        // const id = this.props.match.params.id;
         const id = this.props.postID; //here the postID comes from the parent component 
         this.props.fetchCommentsFromPostThunk(id);
-        // console.log('id',this.props.match);
     }
-
-    
 
     render() {
         const {comments, post, postID, loading} = this.props;
-        // console.log('comments',comments)
-        // const { postID } = this.props;
-
+    
         if(loading){
             return (
                 <span>
-                    <h3>{post.commentCount} Comments </h3>
+                    <h3 className="commentsCounter">{post.commentCount} Comments </h3>
 
                     <CommentForm parentId={postID} />
-
-                    {/* <h4>Loading comments</h4> */}
                     
                     <Dimmer active inverted>
                         <Loader size="small">Loading comments</Loader>
@@ -47,7 +39,6 @@ class Comments extends Component {
 
         return (        
             <span>
-                {/* <h3>{comments.length} Comments </h3> */}
                 <h3 className="commentsCounter">{post.commentCount} Comments </h3>
 
                 <CommentForm parentId={postID} />
@@ -73,6 +64,9 @@ class Comments extends Component {
 Comments.propTypes = {
     postID: PropTypes.string.isRequired,
     fetchCommentsFromPostThunk: PropTypes.func.isRequired,
+    comments: PropTypes.array.isRequired, //from state to props
+    post: PropTypes.object.isRequired, //from state to props
+    loading: PropTypes.bool.isRequired, //from state to props
 }
 
 const mapDispatchToProps = (dispatch) => {

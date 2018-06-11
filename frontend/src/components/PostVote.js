@@ -10,7 +10,7 @@ class PostVote extends Component {
 
     render(){
         const id = this.props.id;
-        // console.log('postVote', id)
+        
         return (
             <span>
             

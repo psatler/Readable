@@ -25,7 +25,6 @@ class Posts extends Component {
 
         return (
             posts.map( post => ( 
-                // <ItemPost key={post.id} props={post} />
                 <PostItem key={post.id} 
                     id={post.id}
                     category={post.category}
@@ -42,11 +41,10 @@ class Posts extends Component {
     }
 
     render() {
-        console.log('posts', this.props.posts)
+        // console.log('posts', this.props.posts)
         const { loading } = this.props;
 
         if(loading){
-            // return <h1>Loading...</h1>
             return (
                 <Dimmer active inverted>
                     <Loader size="large">Loading posts</Loader>
@@ -67,11 +65,11 @@ class Posts extends Component {
                     </Button>
                 </Button.Group>
                
-                {/* <Button color='black' floated='left' onClick={() => this.props.sortItensAction('byPoints')} > Sort </Button> */}
-
                 <Link to="/new" > 
                     <Button color='black' floated='right'> Create New Post</Button>
                 </Link>
+
+
                 <Item.Group divided >
                     {this.displayPosts()}
                 </Item.Group>
@@ -81,11 +79,6 @@ class Posts extends Component {
     }
 }
 
-
-Posts.propTypes = {
-    fetchAllPosts: PropTypes.func.isRequired,
-    posts: PropTypes.array.isRequired, //prop "declared" below
-}
 
 const mapStateToPros = (state) => ({
     posts: state.postReducer.posts,
@@ -97,6 +90,13 @@ const mapDispatchToProps = (dispatch) => {
         fetchAllPosts: () => dispatch(fetchAllPosts()),
         sortItensAction: (option) => dispatch(sortItensAction(option)),
     }
+}
+
+Posts.propTypes = {
+    fetchAllPosts: PropTypes.func.isRequired,
+    posts: PropTypes.array.isRequired, //from state
+    sortItensAction: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
 }
 
 export default connect(mapStateToPros, mapDispatchToProps)(Posts);

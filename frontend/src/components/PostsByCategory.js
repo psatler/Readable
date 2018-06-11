@@ -112,6 +112,13 @@ const mapStateToProps = (state) => {
     }
 }
 
+PostsByCategory.propTypes = {
+    fetchPostsByCategory: PropTypes.func.isRequired,
+    postsByCategory: PropTypes.array.isRequired, //from state to props
+    sortItensAction: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsByCategory);
 
