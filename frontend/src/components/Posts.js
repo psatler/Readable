@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import { Item, Button, Dimmer, Loader}from 'semantic-ui-react'
-// import { showTime } from '../utils/helpers'
 import { PostItem } from './PostItem'
 
 /**
@@ -19,6 +18,12 @@ class Posts extends Component {
 
     displayPosts = () => {
         const posts = this.props.posts;
+        if(posts.length === 0){
+            return (
+                <h5>There is no posts stored</h5>
+            )
+        }
+
         return (
             posts.map( post => ( 
                 // <ItemPost key={post.id} props={post} />
