@@ -3,6 +3,8 @@ import { Comment, Form, Icon } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 import PropTypes from 'prop-types'
 
+import marked from 'marked'; //markdown
+
 //redux
 import {connect} from 'react-redux';
 import { voteOnCommentThunk, editCommentThunk, deleteCommentThunk } from '../actions'
@@ -34,6 +36,9 @@ class CommentItem extends Component {
     render() {
         const {id, author, timestamp, body, voteScore} = this.props;
 
+        //https://stackoverflow.com/questions/34686523/using-marked-in-react
+        const rawMarkup = marked(body, {sanitize: true});
+
         //show textarea depending on the comment is being edited or not
         const editComment = this.state.editing ? (<Form onSubmit={this.handleSubmit}>
                 <Form.TextArea required  name='body' value={this.state.body} 
@@ -41,7 +46,8 @@ class CommentItem extends Component {
 
                 <Form.Button content='Update' labelPosition='left' icon='edit' primary />
             </Form>) : (<Comment.Text>
-                {body}
+                <div dangerouslySetInnerHTML={{ __html: rawMarkup }} />
+                {/* {body} */}
                 </Comment.Text>)
 
         return (

@@ -48,7 +48,8 @@ class PostsByCategory extends Component {
                     timestamp={post.timestamp}
                     voteScore={post.voteScore}
                     commentCount={post.commentCount}
-                    // body={post.body}
+                    body={post.body}
+                    isDetail={false}
                 />
                 )
             )
