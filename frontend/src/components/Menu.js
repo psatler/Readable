@@ -38,7 +38,7 @@ class MenuApp extends Component {
     }
 
     render() {
-        const {categories} = this.props; //categories fetched from the server
+        // const {categories} = this.props; //categories fetched from the server
 
         return (
         <Menu inverted stackable>

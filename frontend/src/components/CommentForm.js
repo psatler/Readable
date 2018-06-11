@@ -78,8 +78,8 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-const mapStateToProps = (state) => ({
+// const mapStateToProps = (state) => ({
 
-})
+// })
 
 export default connect(null, mapDispatchToProps)(CommentForm);

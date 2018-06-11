@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Comment, Form, Icon, Label } from 'semantic-ui-react'
+import { Comment, Form, Icon } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 import PropTypes from 'prop-types'
 

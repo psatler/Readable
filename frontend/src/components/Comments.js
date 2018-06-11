@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Comment, Form, Icon, Label, Dimmer, Loader } from 'semantic-ui-react'
-import { showTime } from '../utils/helpers'
+import { Comment, Dimmer, Loader } from 'semantic-ui-react'
+// import { showTime } from '../utils/helpers'
 
 import CommentForm from './CommentForm'
 import CommentItem from './CommentItem'

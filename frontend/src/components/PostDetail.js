@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, Dimmer, Loader } from 'semantic-ui-react'
+import { Dimmer, Loader } from 'semantic-ui-react'
 import { PostItem } from './PostItem'
 // import { Redirect } from 'react-router-dom'
 import NoMatch from './NoMatch'
@@ -60,8 +60,8 @@ class PostDetail extends Component {
 
     render() {
         const { post, loading } = this.props
-        const id = this.props.match.params.id;
-        const category = this.props.match.params.category;
+        // const id = this.props.match.params.id;
+        // const category = this.props.match.params.category;
 
         if(loading){
             // return <h1>Loading post details</h1>

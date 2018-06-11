@@ -12,7 +12,6 @@ import { fetchAllPosts, sortItensAction } from '../actions' //importing an actio
 
 class Posts extends Component {
     componentDidMount(){
-        const category = this.props.match.params.category;
         this.props.fetchAllPosts();
     }
 

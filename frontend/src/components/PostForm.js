@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'semantic-ui-react'
 import uuidv4 from 'uuid/v4'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 //redux
 import { connect } from 'react-redux'
