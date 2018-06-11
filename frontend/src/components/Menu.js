@@ -59,7 +59,7 @@ class MenuApp extends Component {
             <Menu.Item className='right' >
                 <a target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/psatler/myReads_React"
+                    href="https://github.com/psatler/Readable"
                 >
                     <Icon name='code' />
                 </a>
