@@ -27,12 +27,14 @@ Information about the API server and how to use it can be found in its [README f
 
 This project makes use of the following features:
 
-* React: A Javascript Library for Building User Interfaces
-* Redux:
-* React-redux
-* Redux-Thunk
-* React-Router v4
-* Semantic-UI
-* Markdown support using Markedjs library
-* Javascript-time-ago library
+* [React:](https://reactjs.org/) A Javascript Library for Building User Interfaces
+* [Redux:](https://redux.js.org/) A predictable state container for JavaScript apps.
+* [React-redux:](https://github.com/reduxjs/react-redux) Official React bindings for Redux
+* [Redux-Thunk:](https://github.com/reduxjs/redux-thunk) Thunk middleware for Redux
+* [React-Router v4:](https://reacttraining.com/react-router/web/guides/basic-components) Declarative Routing for React.js
+* [Semantic UI React:](https://react.semantic-ui.com/introduction) The official Semantic-UI-React integration
+* [Markdown support using Markedjs:](https://github.com/markedjs/marked) A markdown parser and compiler. Built for speed.
+* [Javascript-time-ago:](https://github.com/catamphetamine/javascript-time-ago) International highly customizable relative date/time formatting
+* Jest
+* Enzyme
 
