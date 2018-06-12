@@ -1,4 +1,3 @@
-// import { FETCH_ALL_POSTS } from './types'
 import * as API from '../utils/api'
 
 
