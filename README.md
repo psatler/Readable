@@ -35,6 +35,6 @@ This project makes use of the following features:
 * [Semantic UI React:](https://react.semantic-ui.com/introduction) The official Semantic-UI-React integration
 * [Markdown support using Markedjs:](https://github.com/markedjs/marked) A markdown parser and compiler. Built for speed.
 * [Javascript-time-ago:](https://github.com/catamphetamine/javascript-time-ago) International highly customizable relative date/time formatting
-* Jest
-* Enzyme
+* Jest Unit Testing framework for ReactJs developed by Facebook
+* Enzyme JS testing utility developed by Airbnb to make it easier to assert React Components.
 
