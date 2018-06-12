@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form } from 'semantic-ui-react'
+import { Form, Popup } from 'semantic-ui-react'
 import uuidv4 from 'uuid/v4'
 
 //redux
@@ -58,8 +58,18 @@ class CommentForm extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <Form.Input required placeholder='Insert your name' name='author' value={author} 
                     onChange={this.handleChange} />
-                <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
-                   onChange={this.handleChange} />
+
+                <Popup 
+                        trigger={
+                            <Form.TextArea required placeholder='Insert comment' name='body' value={body} 
+                        onChange={this.handleChange} />}
+
+                        content="It accepts markdown"
+                        on="focus"
+                    />
+
+                {/* <Form.TextArea required placeholder='Insert comment' name='body' value={body} 
+                   onChange={this.handleChange} /> */}
 
                 <Form.Button content='Add Comment' labelPosition='left' icon='edit' primary />
             </Form>

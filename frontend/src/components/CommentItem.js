@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Comment, Form, Icon } from 'semantic-ui-react'
+import { Comment, Form, Icon, Popup } from 'semantic-ui-react'
 import { showTime } from '../utils/helpers'
 import PropTypes from 'prop-types'
 
@@ -41,8 +41,16 @@ class CommentItem extends Component {
 
         //show textarea depending on the comment is being edited or not
         const editComment = this.state.editing ? (<Form onSubmit={this.handleSubmit}>
-                <Form.TextArea required  name='body' value={this.state.body} 
-                   onChange={this.handleChange} />
+                <Popup 
+                        trigger={
+                            <Form.TextArea required name='body' value={this.state.body} 
+                        onChange={this.handleChange} />}
+
+                        content="It accepts markdown"
+                        on="focus"
+                    />
+                {/* <Form.TextArea required  name='body' value={this.state.body} 
+                   onChange={this.handleChange} /> */}
 
                 <Form.Button content='Update' labelPosition='left' icon='edit' primary />
             </Form>) : (<Comment.Text>

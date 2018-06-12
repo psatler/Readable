@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Dimmer, Loader } from 'semantic-ui-react'
+import { Form, Dimmer, Loader, Popup } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 //redux
@@ -85,8 +85,17 @@ class PostEdit extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Input required placeholder='Insert the post title' name='title' value={title} 
                         onChange={this.handleChange} />
-                    <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
-                    onChange={this.handleChange} />
+                    
+                    <Popup 
+                        trigger={
+                            <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
+                        onChange={this.handleChange} />}
+
+                        content="It accepts markdown"
+                        on="focus"
+                    />
+                    {/* <Form.TextArea required placeholder='Insert the post message' name='body' value={body} 
+                    onChange={this.handleChange} /> */}
                     <Form.Input disabled name='category' value={category} />
                     <Form.Input disabled name='author' value={author} />
                     <Form.Button basic color="black" content='Submit changes' />
