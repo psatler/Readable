@@ -23,7 +23,7 @@ function setup() {
       props,
       enzymeWrapper
     }
-  }
+}
 
 
 describe('[Component] CommentItem', () => {
