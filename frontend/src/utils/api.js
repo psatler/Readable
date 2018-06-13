@@ -1,4 +1,5 @@
-const api = "http://localhost:3001"
+// const api = "http://localhost:3001"
+const api = process.env.REACT_APP_BACKEND_HOST || "http://localhost:3001";
 
 const token = 'whatever-you-want'
 
