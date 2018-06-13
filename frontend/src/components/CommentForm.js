@@ -9,7 +9,7 @@ import { addCommentThunk  } from '../actions'
 
 
 
-class CommentForm extends Component {
+export class CommentForm extends Component {
 
     /**
         PARAMS:

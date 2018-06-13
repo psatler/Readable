@@ -9,7 +9,7 @@ import marked from 'marked'; //markdown
 import {connect} from 'react-redux';
 import { voteOnCommentThunk, editCommentThunk, deleteCommentThunk } from '../actions'
 
-class CommentItem extends Component {
+export class CommentItem extends Component {
 
     state = {
         editing: false,
