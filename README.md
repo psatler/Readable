@@ -1,4 +1,5 @@
 # Readable 
+>   A live demo of the app can be found [here](https://readable-vix.herokuapp.com/)
 
 This was built for the final assessment project for Udacity's Redux course where you build a content and comment web app. Users are able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users are also able to edit and delete posts and comments.
 
@@ -23,9 +24,9 @@ To run this project in your local machine:
 
 Information about the API server and how to use it can be found in its [README file](api-server/README.md).
 
-## Main Features
+## Main Dependecies
 
-This project makes use of the following features:
+This project makes use of the following:
 
 * [React:](https://reactjs.org/) A Javascript Library for Building User Interfaces
 * [Redux:](https://redux.js.org/) A predictable state container for JavaScript apps.
