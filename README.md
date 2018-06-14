@@ -1,5 +1,5 @@
 # Readable 
->   A live demo of the app can be found [here](https://readable-vix.herokuapp.com/)
+>   A live demo of the app can be found [here](https://readable-psatler.herokuapp.com/)
 
 This was built for the final assessment project for Udacity's Redux course where you build a content and comment web app. Users are able to post content to predefined categories, comment on their posts and other users' posts, and vote on posts and comments. Users are also able to edit and delete posts and comments.
 
